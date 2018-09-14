@@ -2,7 +2,9 @@ import React from "react";
 
 export default class CropSelect extends React.Component {
   handleChangeCrop = event => {
-    this.props.changeCrop(event.target.value);
+    this.props.changeCrop(
+      this.props.crops.find(crop => crop.id === event.target.value)
+    );
   };
 
   render() {

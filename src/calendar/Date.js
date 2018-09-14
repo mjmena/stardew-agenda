@@ -26,16 +26,25 @@ export default class Day extends React.Component {
 
     return (
       <Date onClick={this.handleClick}>
-        {this.props.date}
-        {events
-          ? this.props.events.map(event => <div>{event.name}</div>)
-          : null}
+        {this.props.date % 28}
+        {events &&
+          this.props.events.map(event => {
+            if (event.type === "plant")
+              return <img src={`/images/seeds/${event.id}.png`} />;
+            else if (event.type === "harvest")
+              return <img src={`/images/crops/${event.id}.png`} />;
+            else return <div key={event.name}> {event.name} </div>;
+          })}
         <Modal
           isOpen={this.state.isOpen}
           onRequestClose={this.handleClose}
           ariaHideApp={false}
         >
-          <Event crops={this.props.crops} addEvent={this.props.addEvent} />
+          <Event
+            date={this.props.date}
+            crops={this.props.crops}
+            addEvent={this.props.addEvent}
+          />
         </Modal>
       </Date>
     );

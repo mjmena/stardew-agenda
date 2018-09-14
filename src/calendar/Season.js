@@ -44,12 +44,12 @@ export default class Season extends React.Component {
         {dates.map(date => (
           <CalendarBlock key={date}>
             <Date
-              date={date - this.props.season.start + 1}
+              date={date}
               events={this.props.events[date]}
               crops={this.props.crops.filter(
                 crop => date <= crop.end - crop.growth
               )}
-              addEvent={this.props.addEvent(date)}
+              addEvent={this.props.addEvent}
             />
           </CalendarBlock>
         ))}

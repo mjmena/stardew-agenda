@@ -33,11 +33,11 @@ export default class Calendar extends React.Component {
 
   componentDidMount() {
     this.state.crops.forEach(crop => {
-      this.addEvent(crop.end - crop.growth)(crop);
+      this.addEvent(crop, crop.end - crop.growth);
     });
   }
 
-  addEvent = date => event => {
+  addEvent = (event, date) => {
     this.setState(
       produce(draft => {
         //does that day already have any events on it?
