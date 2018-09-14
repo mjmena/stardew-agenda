@@ -1,0 +1,434 @@
+[
+  {
+    "buy": 70,
+    "harvest": {},
+    "id": "amaranth",
+    "name": "Amaranth",
+    "sell": 150,
+    "growth": 7,
+    "start": 57,
+    "end": 84
+  },
+  {
+    "buy": 700,
+    "harvest": {},
+    "id": "ancient_fruit",
+    "name": "Ancient Fruit",
+    "sell": 550,
+    "growth": 28,
+    "regrowth": 7,
+    "start": 1,
+    "end": 84
+  },
+  {
+    "buy": 30,
+    "harvest": {},
+    "id": "artichoke",
+    "name": "Artichoke",
+    "sell": 160,
+    "growth": 8,
+    "start": 57,
+    "end": 84
+  },
+  {
+    "buy": 20,
+    "harvest": {},
+    "id": "beet",
+    "name": "Beet",
+    "sell": 100,
+    "growth": 6,
+    "start": 57,
+    "end": 84
+  },
+  {
+    "buy": 30,
+    "harvest": {},
+    "id": "blue_jazz",
+    "name": "Blue Jazz",
+    "sell": 50,
+    "growth": 7,
+    "start": 1,
+    "end": 28
+  },
+  {
+    "buy": 80,
+    "harvest": {
+      "extra_chance": 0.02,
+      "level_increase": 5,
+      "max": 5,
+      "min": 3
+    },
+    "id": "blueberry",
+    "name": "Blueberry",
+    "sell": 50,
+    "growth": 13,
+    "regrowth": 4,
+    "start": 29,
+    "end": 56
+  },
+  {
+    "buy": 50,
+    "harvest": {},
+    "id": "bok_choy",
+    "name": "Bok Choy",
+    "sell": 80,
+    "growth": 4,
+    "start": 57,
+    "end": 84
+  },
+  {
+    "buy": 80,
+    "harvest": {},
+    "id": "cauliflower",
+    "name": "Cauliflower",
+    "sell": 175,
+    "growth": 12,
+    "start": 1,
+    "end": 28
+  },
+  {
+    "buy": 30,
+    "harvest": {
+      "extra_chance": 0.02,
+      "level_increase": 10,
+      "max": 6,
+      "min": 4
+    },
+    "id": "coffee_bean",
+    "name": "Coffee Bean",
+    "sell": 15,
+    "growth": 10,
+    "regrowth": 2,
+    "start": 1,
+    "end": 56
+  },
+  {
+    "buy": 150,
+    "harvest": {
+      "extra_chance": 0,
+      "level_increase": 5,
+      "max": 2,
+      "min": 1
+    },
+    "id": "corn",
+    "name": "Corn",
+    "sell": 50,
+    "growth": 14,
+    "regrowth": 4,
+    "start": 29,
+    "end": 84
+  },
+  {
+    "buy": 240,
+    "harvest": {
+      "extra_chance": 0.1,
+      "level_increase": 5,
+      "max": 6,
+      "min": 2
+    },
+    "id": "cranberries",
+    "name": "Cranberries",
+    "sell": 75,
+    "growth": 7,
+    "regrowth": 5,
+    "start": 57,
+    "end": 84
+  },
+  {
+    "buy": 20,
+    "harvest": {
+      "extra_chance": 0.002,
+      "level_increase": 10,
+      "max": 2,
+      "min": 1
+    },
+    "id": "eggplant",
+    "name": "Eggplant",
+    "sell": 60,
+    "growth": 5,
+    "regrowth": 5,
+    "start": 57,
+    "end": 84
+  },
+  {
+    "buy": 200,
+    "harvest": {},
+    "id": "fairy_rose",
+    "name": "Fairy Rose",
+    "sell": 290,
+    "growth": 12,
+    "start": 57,
+    "end": 84
+  },
+  {
+    "buy": 40,
+    "harvest": {},
+    "id": "garlic",
+    "name": "Garlic",
+    "sell": 60,
+    "growth": 4,
+    "start": 1,
+    "end": 28
+  },
+  {
+    "buy": 60,
+    "harvest": {
+      "extra_chance": 0,
+      "level_increase": 6,
+      "max": 2,
+      "min": 1
+    },
+    "id": "grape",
+    "name": "Grape",
+    "sell": 80,
+    "growth": 10,
+    "regrowth": 3,
+    "start": 57,
+    "end": 84
+  },
+  {
+    "buy": 60,
+    "harvest": {
+      "extra_chance": 0,
+      "level_increase": 6,
+      "max": 2,
+      "min": 1
+    },
+    "id": "green_bean",
+    "name": "Green Bean",
+    "sell": 40,
+    "growth": 10,
+    "regrowth": 3,
+    "start": 1,
+    "end": 28
+  },
+  {
+    "buy": 60,
+    "harvest": {
+      "extra_chance": 0,
+      "level_increase": 6,
+      "max": 2,
+      "min": 1
+    },
+    "id": "hops",
+    "name": "Hops",
+    "sell": 25,
+    "growth": 11,
+    "regrowth": 1,
+    "start": 29,
+    "end": 56
+  },
+  {
+    "buy": 40,
+    "harvest": {
+      "extra_chance": 0.03,
+      "level_increase": 5,
+      "max": 1,
+      "min": 1
+    },
+    "id": "hot_pepper",
+    "name": "Hot Pepper",
+    "sell": 40,
+    "growth": 5,
+    "regrowth": 3,
+    "start": 29,
+    "end": 56
+  },
+  {
+    "buy": 70,
+    "harvest": {},
+    "id": "kale",
+    "name": "Kale",
+    "sell": 110,
+    "growth": 6,
+    "start": 1,
+    "end": 28
+  },
+  {
+    "buy": 80,
+    "harvest": {},
+    "id": "melon",
+    "name": "Melon",
+    "sell": 250,
+    "growth": 12,
+    "start": 29,
+    "end": 56
+  },
+  {
+    "buy": 20,
+    "harvest": {},
+    "id": "parsnip",
+    "name": "Parsnip",
+    "sell": 35,
+    "growth": 4,
+    "start": 1,
+    "end": 28
+  },
+  {
+    "buy": 100,
+    "harvest": {},
+    "id": "poppy",
+    "name": "Poppy",
+    "sell": 140,
+    "growth": 7,
+    "start": 29,
+    "end": 56
+  },
+  {
+    "buy": 50,
+    "harvest": {
+      "extra_chance": 0.2,
+      "level_increase": 8,
+      "max": 2,
+      "min": 1
+    },
+    "id": "potato",
+    "name": "Potato",
+    "sell": 80,
+    "growth": 6,
+    "start": 1,
+    "end": 28
+  },
+  {
+    "buy": 100,
+    "harvest": {},
+    "id": "pumpkin",
+    "name": "Pumpkin",
+    "sell": 320,
+    "growth": 13,
+    "start": 57,
+    "end": 84
+  },
+  {
+    "buy": 40,
+    "harvest": {},
+    "id": "radish",
+    "name": "Radish",
+    "sell": 90,
+    "growth": 6,
+    "start": 29,
+    "end": 56
+  },
+  {
+    "buy": 100,
+    "harvest": {},
+    "id": "red_cabbage",
+    "name": "Red Cabbage",
+    "sell": 260,
+    "growth": 9,
+    "start": 29,
+    "end": 56
+  },
+  {
+    "buy": 100,
+    "harvest": {},
+    "id": "rhubarb",
+    "name": "Rhubarb",
+    "sell": 220,
+    "growth": 13,
+    "start": 1,
+    "end": 28
+  },
+  {
+    "buy": 400,
+    "harvest": {},
+    "id": "starfruit",
+    "name": "Starfruit",
+    "sell": 750,
+    "growth": 13,
+    "start": 29,
+    "end": 56
+  },
+  {
+    "buy": 100,
+    "harvest": {
+      "extra_chance": 0.02,
+      "level_increase": 5,
+      "max": 1,
+      "min": 1
+    },
+    "id": "strawberry",
+    "name": "Strawberry",
+    "sell": 120,
+    "growth": 8,
+    "regrowth": 4,
+    "start": 1,
+    "end": 28
+  },
+  {
+    "buy": 50,
+    "harvest": {},
+    "id": "summer_spangle",
+    "name": "Summer Spangle",
+    "sell": 90,
+    "growth": 8,
+    "start": 29,
+    "end": 56
+  },
+  {
+    "buy": 125,
+    "harvest": {},
+    "id": "sunflower",
+    "name": "Sunflower",
+    "sell": 80,
+    "growth": 8,
+    "start": 29,
+    "end": 84
+  },
+  {
+    "buy": 1000,
+    "harvest": {},
+    "id": "sweet_gem_berry",
+    "name": "Sweet Gem Berry",
+    "sell": 3000,
+    "growth": 24,
+    "start": 57,
+    "end": 84
+  },
+  {
+    "buy": 50,
+    "harvest": {
+      "extra_chance": 0.05,
+      "level_increase": 6,
+      "max": 1,
+      "min": 1
+    },
+    "id": "tomato",
+    "name": "Tomato",
+    "sell": 60,
+    "growth": 11,
+    "regrowth": 4,
+    "start": 29,
+    "end": 56
+  },
+  {
+    "buy": 20,
+    "harvest": {},
+    "id": "tulip",
+    "name": "Tulip",
+    "sell": 30,
+    "growth": 6,
+    "start": 1,
+    "end": 28
+  },
+  {
+    "buy": 10,
+    "harvest": {},
+    "id": "wheat",
+    "name": "Wheat",
+    "sell": 25,
+    "growth": 4,
+    "start": 29,
+    "end": 84
+  },
+  {
+    "buy": 60,
+    "harvest": {},
+    "id": "yam",
+    "name": "Yam",
+    "sell": 160,
+    "growth": 10,
+    "start": 57,
+    "end": 84
+  }
+]

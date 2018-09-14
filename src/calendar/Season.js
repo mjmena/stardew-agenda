@@ -29,22 +29,26 @@ const days = [
   "Sunday"
 ];
 
-//Make and array from 1-28, basically a range function
-const dates = Array.from({ length: 28 }).map((date, index) => index + 1);
-
 export default class Season extends React.Component {
   render() {
+    const dates = Array.from({ length: 28 }).map(
+      (date, index) => index + this.props.season.start
+    );
     return (
       <CalendarContainer>
-        <Title>{this.props.name}</Title>
+        <Title>{this.props.season.name}</Title>
         {days.map(day => (
           <CalendarBlock key={day}>{day}</CalendarBlock>
         ))}
+
         {dates.map(date => (
           <CalendarBlock key={date}>
             <Date
-              date={date}
+              date={date - this.props.season.start + 1}
               events={this.props.events[date]}
+              crops={this.props.crops.filter(
+                crop => date <= crop.end - crop.growth
+              )}
               addEvent={this.props.addEvent(date)}
             />
           </CalendarBlock>
