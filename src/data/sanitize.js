@@ -23,7 +23,6 @@ data.crops.forEach(crop => {
   if (end === "spring") crop.end = 28;
   else if (end === "summer") crop.end = 28 * 2;
   else if (end === "fall") crop.end = 28 * 3;
-
   delete crop.seasons;
 });
 
@@ -42,7 +41,10 @@ Object.keys(events).forEach(key => {
   events[key].forEach((event, index) => {
     if (event.festival || event.type) event.type = "festival";
     else event.type = "birthday";
-
+    event.id = event.name
+      .toLowerCase()
+      .trim()
+      .replace(/\s/g, "_");
     delete event.festival;
     delete event.day;
   });

@@ -2,263 +2,307 @@
   "4": [
     {
       "name": "Kent",
-      "type": "birthday"
+      "type": "birthday",
+      "id": "kent"
     }
   ],
   "7": [
     {
       "name": "Lewis",
-      "type": "birthday"
+      "type": "birthday",
+      "id": "lewis"
     }
   ],
   "10": [
     {
       "name": "Vincent",
-      "type": "birthday"
+      "type": "birthday",
+      "id": "vincent"
     }
   ],
   "13": [
     {
       "name": "Egg Festival",
-      "type": "festival"
+      "type": "festival",
+      "id": "egg_festival"
     }
   ],
   "14": [
     {
       "name": "Haley",
-      "type": "birthday"
+      "type": "birthday",
+      "id": "haley"
     }
   ],
   "18": [
     {
       "name": "Pam",
-      "type": "birthday"
+      "type": "birthday",
+      "id": "pam"
     }
   ],
   "20": [
     {
       "name": "Shane",
-      "type": "birthday"
+      "type": "birthday",
+      "id": "shane"
     }
   ],
   "24": [
     {
       "name": "Flower Dance",
-      "type": "festival"
+      "type": "festival",
+      "id": "flower_dance"
     }
   ],
   "26": [
     {
       "name": "Pierre",
-      "type": "birthday"
+      "type": "birthday",
+      "id": "pierre"
     }
   ],
   "27": [
     {
       "name": "Emily",
-      "type": "birthday"
+      "type": "birthday",
+      "id": "emily"
     }
   ],
   "32": [
     {
       "name": "Jas",
-      "type": "birthday"
+      "type": "birthday",
+      "id": "jas"
     }
   ],
   "36": [
     {
       "name": "Gus",
-      "type": "birthday"
+      "type": "birthday",
+      "id": "gus"
     }
   ],
   "38": [
     {
       "name": "Maru",
-      "type": "birthday"
+      "type": "birthday",
+      "id": "maru"
     }
   ],
   "39": [
     {
       "name": "Luau",
-      "type": "festival"
+      "type": "festival",
+      "id": "luau"
     }
   ],
   "41": [
     {
       "name": "Alex",
-      "type": "birthday"
+      "type": "birthday",
+      "id": "alex"
     }
   ],
   "45": [
     {
       "name": "Sam",
-      "type": "birthday"
+      "type": "birthday",
+      "id": "sam"
     }
   ],
   "47": [
     {
       "name": "Demetrius",
-      "type": "birthday"
+      "type": "birthday",
+      "id": "demetrius"
     }
   ],
   "50": [
     {
       "name": "Dwarf",
-      "type": "birthday"
+      "type": "birthday",
+      "id": "dwarf"
     }
   ],
   "52": [
     {
       "name": "Willy",
-      "type": "birthday"
+      "type": "birthday",
+      "id": "willy"
     }
   ],
   "56": [
     {
       "name": "Dance of the Moonlight Jellies",
-      "type": "festival"
+      "type": "festival",
+      "id": "dance_of_the_moonlight_jellies"
     }
   ],
   "58": [
     {
       "name": "Penny",
-      "type": "birthday"
+      "type": "birthday",
+      "id": "penny"
     }
   ],
   "61": [
     {
       "name": "Elliot",
-      "type": "birthday"
+      "type": "birthday",
+      "id": "elliot"
     }
   ],
   "67": [
     {
       "name": "Jodi",
-      "type": "birthday"
+      "type": "birthday",
+      "id": "jodi"
     }
   ],
   "69": [
     {
       "name": "Abigail",
-      "type": "birthday"
+      "type": "birthday",
+      "id": "abigail"
     }
   ],
   "71": [
     {
       "name": "Sandy",
-      "type": "birthday"
+      "type": "birthday",
+      "id": "sandy"
     }
   ],
   "72": [
     {
       "name": "Stardew Valley Fair",
-      "type": "festival"
+      "type": "festival",
+      "id": "stardew_valley_fair"
     }
   ],
   "74": [
     {
       "name": "Marnie",
-      "type": "birthday"
+      "type": "birthday",
+      "id": "marnie"
     }
   ],
   "77": [
     {
       "name": "Robin",
-      "type": "birthday"
+      "type": "birthday",
+      "id": "robin"
     }
   ],
   "80": [
     {
       "name": "George",
-      "type": "birthday"
+      "type": "birthday",
+      "id": "george"
     }
   ],
   "83": [
     {
       "name": "Spirit's Eve",
-      "type": "festival"
+      "type": "festival",
+      "id": "spirit's_eve"
     }
   ],
   "85": [
     {
       "name": "Krobus",
-      "type": "birthday"
+      "type": "birthday",
+      "id": "krobus"
     }
   ],
   "87": [
     {
       "name": "Linus",
-      "type": "birthday"
+      "type": "birthday",
+      "id": "linus"
     }
   ],
   "91": [
     {
       "name": "Caroline",
-      "type": "birthday"
+      "type": "birthday",
+      "id": "caroline"
     }
   ],
   "92": [
     {
       "name": "Festival of Ice",
-      "type": "festival"
+      "type": "festival",
+      "id": "festival_of_ice"
     }
   ],
   "94": [
     {
       "name": "Sebastian",
-      "type": "birthday"
+      "type": "birthday",
+      "id": "sebastian"
     }
   ],
   "98": [
     {
       "name": "Harvey",
-      "type": "birthday"
+      "type": "birthday",
+      "id": "harvey"
     }
   ],
   "99": [
     {
       "name": "Night Market",
-      "type": "festival"
+      "type": "festival",
+      "id": "night_market"
     }
   ],
   "100": [
     {
       "name": "Night Market",
-      "type": "festival"
+      "type": "festival",
+      "id": "night_market"
     }
   ],
   "101": [
     {
       "name": "Night Market",
-      "type": "festival"
+      "type": "festival",
+      "id": "night_market"
     },
     {
       "name": "Wizard",
-      "type": "birthday"
+      "type": "birthday",
+      "id": "wizard"
     }
   ],
   "104": [
     {
       "name": "Evelyn",
-      "type": "birthday"
+      "type": "birthday",
+      "id": "evelyn"
     }
   ],
   "107": [
     {
       "name": "Leah",
-      "type": "birthday"
+      "type": "birthday",
+      "id": "leah"
     }
   ],
   "109": [
     {
       "name": "Feast of the Winter Star",
-      "type": "festival"
+      "type": "festival",
+      "id": "feast_of_the_winter_star"
     }
   ],
   "110": [
     {
       "name": "Clint",
-      "type": "birthday"
+      "type": "birthday",
+      "id": "clint"
     }
   ]
 }

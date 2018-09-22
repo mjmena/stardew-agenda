@@ -1,59 +1,76 @@
 import React from "react";
 import styled from "styled-components";
-import Date from "./Date";
+import range from "lodash/range";
+import Day from "./Day";
 
-const CalendarContainer = styled.div`
+const StyledSeason = styled.div`
   display: flex
   flex-wrap: wrap
+  flex-grow: 1
 `;
 
-const CalendarBlock = styled.div`
+const StyledTitle = styled.div`
+    flex-grow: 1
+    width: 100%
+    text-align: center
+`;
+
+const StyledSeasonBlock = styled.div`
   flex-grow: 1
   width: 13%
-  height: 50px
   border: 1px solid black
 `;
 
-const Title = styled.div`
-    flex-grow: 1
-    width: 100%
+const StyledDay = styled(StyledSeasonBlock)`
+  height: 100px;
 `;
 
-const days = [
-  "Monday",
-  "Tuesday",
-  "Wednesday",
-  "Thursday",
-  "Friday",
-  "Saturday",
-  "Sunday"
-];
-
 export default class Season extends React.Component {
+  static names_of_days = [
+    "Monday",
+    "Tuesday",
+    "Wednesday",
+    "Thursday",
+    "Friday",
+    "Saturday",
+    "Sunday"
+  ];
+
+  static days_in_season = range(1, 29);
+
+  state = {
+    crops: Season.days_in_season.reduce((crops_by_day, day) => {
+      crops_by_day[day] = this.props.crops.filter(
+        crop => day + this.props.season.start - 1 <= crop.end - crop.growth
+      );
+      return crops_by_day;
+    }, {})
+  };
+
   render() {
-    const dates = Array.from({ length: 28 }).map(
-      (date, index) => index + this.props.season.start
-    );
+    const { season, events, ...handlers } = this.props;
+    const date_offset = season.start - 1;
     return (
-      <CalendarContainer>
-        <Title>{this.props.season.name}</Title>
-        {days.map(day => (
-          <CalendarBlock key={day}>{day}</CalendarBlock>
+      <StyledSeason>
+        <StyledTitle>{season.name}</StyledTitle>
+        {Season.names_of_days.map(day => (
+          <StyledSeasonBlock key={day}>{day}</StyledSeasonBlock>
         ))}
 
-        {dates.map(date => (
-          <CalendarBlock key={date}>
-            <Date
-              date={date}
-              events={this.props.events[date]}
-              crops={this.props.crops.filter(
-                crop => date <= crop.end - crop.growth
-              )}
-              addEvent={this.props.addEvent}
-            />
-          </CalendarBlock>
-        ))}
-      </CalendarContainer>
+        {Season.days_in_season.map(day_in_season => {
+          const day_in_year = day_in_season + date_offset;
+          return (
+            <StyledDay key={day_in_year}>
+              <Day
+                {...handlers}
+                date={day_in_year}
+                events={events[day_in_year]}
+                crops={this.state.crops[day_in_season]}
+              />
+            </StyledDay>
+          );
+        })}
+      </StyledSeason>
     );
   }
 }

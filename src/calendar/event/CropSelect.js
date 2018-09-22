@@ -1,4 +1,7 @@
 import React from "react";
+import styled from "styled-components";
+import EditCrop from "./EditCrop";
+import { Table, Row, Cell } from "./Table";
 
 export default class CropSelect extends React.Component {
   handleChangeCrop = event => {
@@ -9,13 +12,17 @@ export default class CropSelect extends React.Component {
 
   render() {
     return (
-      <select value={this.props.crop} onChange={this.handleChangeCrop}>
+      <Table>
+        <Row>
+          <Cell>Crop</Cell>
+          <Cell>Price</Cell>
+          <Cell>Quantity</Cell>
+          <Cell>Replant</Cell>
+        </Row>
         {this.props.crops.map(crop => (
-          <option key={crop.id} value={crop.id}>
-            {crop.name}
-          </option>
+          <EditCrop key={crop.id} crop={crop} />
         ))}
-      </select>
+      </Table>
     );
   }
 }
