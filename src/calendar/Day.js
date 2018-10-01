@@ -1,8 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import Modal from "react-modal";
 import memoize from "memoize-one";
-import EventEditor from "./EventEditor";
 import EventDisplay from "./event/EventDisplay";
 let StyledDay = styled.div`
   width: 100%;
@@ -13,7 +11,6 @@ let StyledDay = styled.div`
 
 const StyledDayTitle = styled.div`
   height: 35px;
-  font-size 15px 
 `;
 
 const StyledEvents = styled.div`
@@ -21,7 +18,7 @@ const StyledEvents = styled.div`
   display: flex;
   flex-flow: column wrap;
   justify-content: start;
-  overflow: scroll;
+  overflow: auto;
 `;
 
 const StyledEvent = styled.div`
@@ -50,7 +47,6 @@ export default class Day extends React.Component {
 
   render() {
     const [special_event, ...crop_events] = this.props.events;
-    const editable_events = this.getEditableEvents(this.props.events);
 
     const title =
       special_event &&
@@ -71,13 +67,6 @@ export default class Day extends React.Component {
           {this.props.date % 28} {title}
         </StyledDayTitle>
         <StyledEvents>{events}</StyledEvents>
-        <Modal
-          isOpen={this.state.isOpen}
-          onRequestClose={this.handleClose}
-          ariaHideApp={false}
-        >
-          <EventEditor {...this.props} events={editable_events} />
-        </Modal>
       </StyledDay>
     );
   }

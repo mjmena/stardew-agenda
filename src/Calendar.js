@@ -1,8 +1,6 @@
 import React from "react";
 import styled from "styled-components";
 import produce from "immer";
-import { Button, Sidebar, Segment } from "semantic-ui-react";
-
 import EventEditor from "./calendar/EventEditor";
 import Season from "./calendar/Season";
 import events from "./data/events";
@@ -97,27 +95,32 @@ export default class Calendar extends React.Component {
     );
   };
 
-  handleToggleVisibility = event => {
-    this.setState(state => ({ visible: !state.visible }));
-  };
-
   render() {
     return (
-      <CalendarLayout>
-        <Button onClick={this.handleToggleVisibility}>Toggle visibility</Button>
+      <React.Fragment>
+        <EventEditor
+          date={this.state.day}
+          crops={Calendar.crops.spring}
+          events={this.state.events[this.state.day]}
+          createEvents={this.createEvents}
+          updateEvents={this.updateEvents}
+          removeEvents={this.removeEvents}
+        />
 
-        {seasons.map(season => (
-          <Season
-            key={season.name}
-            season={season}
-            events={this.state.events}
-            crops={Calendar.crops[season.name]}
-            createEvents={this.createEvents}
-            updateEvents={this.updateEvents}
-            removeEvents={this.removeEvents}
-          />
-        ))}
-      </CalendarLayout>
+        <CalendarLayout>
+          {seasons.map(season => (
+            <Season
+              key={season.name}
+              season={season}
+              events={this.state.events}
+              crops={Calendar.crops[season.name]}
+              createEvents={this.createEvents}
+              updateEvents={this.updateEvents}
+              removeEvents={this.removeEvents}
+            />
+          ))}
+        </CalendarLayout>
+      </React.Fragment>
     );
   }
 }
