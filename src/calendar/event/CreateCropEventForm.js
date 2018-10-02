@@ -20,6 +20,7 @@ export default class CreateCropEventForm extends React.Component {
   state = {
     crop: null,
     quantity: 0,
+    price: 0,
     replant: false
   };
 
@@ -54,9 +55,18 @@ export default class CreateCropEventForm extends React.Component {
     this.setState({ replant });
   };
 
+  handleSubmit = event => {
+    event.preventDefault();
+    this.props.handleCreateCropEvent(
+      this.state.crop,
+      this.state.quantity,
+      this.state.replant
+    );
+  };
+
   render() {
     return (
-      <StyledForm>
+      <StyledForm onSubmit={this.handleSubmit}>
         <StyledPrimaryInput>
           <CropSelect
             crop={this.state.crop}
@@ -84,6 +94,9 @@ export default class CreateCropEventForm extends React.Component {
             checked={this.state.replant}
             onChange={this.handleReplantChange}
           />
+        </StyledSecondaryInput>
+        <StyledSecondaryInput>
+          <input type="submit" value="submit" />
         </StyledSecondaryInput>
       </StyledForm>
     );

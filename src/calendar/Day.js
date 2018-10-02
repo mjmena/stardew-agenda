@@ -7,6 +7,7 @@ let StyledDay = styled.div`
   height: 100%;
   display: flex;
   flex-flow: column nowrap;
+  background-color: ${props => (props.selected ? "blue" : "none")};
 `;
 
 const StyledDayTitle = styled.div`
@@ -26,24 +27,13 @@ const StyledEvent = styled.div`
 `;
 
 export default class Day extends React.Component {
-  static defaultProps = {
-    events: []
-  };
-  state = {
-    isOpen: false
-  };
-
-  handleClick = event => {
-    this.setState({ isOpen: true });
-  };
-
-  handleClose = event => {
-    this.setState({ isOpen: false });
-  };
-
   getEditableEvents = memoize(events =>
     events.filter(event => event.type === "plant" || event.type === "replant")
   );
+
+  handleClick = event => {
+    this.props.selectDate(this.props.date);
+  };
 
   render() {
     const [special_event, ...crop_events] = this.props.events;
@@ -60,11 +50,12 @@ export default class Day extends React.Component {
         <EventDisplay event={event} />
       </StyledEvent>
     ));
+    console.log(this.props.selected);
 
     return (
-      <StyledDay onClick={this.handleClick}>
+      <StyledDay selected={this.props.selected} onClick={this.handleClick}>
         <StyledDayTitle>
-          {this.props.date % 28} {title}
+          {this.props.day} {title}
         </StyledDayTitle>
         <StyledEvents>{events}</StyledEvents>
       </StyledDay>

@@ -3,13 +3,8 @@ import range from "lodash/range";
 import styled from "styled-components";
 import CreateCropEventForm from "./event/CreateCropEventForm";
 import UpdateCropEventForm from "./event/UpdateCropEventForm";
-export default class Event extends React.Component {
-  // componentDidMount() {
-  //   this.props.crops.forEach(crop =>
-  //     this.handleCreateCropEvent(crop, 1, false)
-  //   );
-  // }
 
+export default class Event extends React.Component {
   createPlantCropEvent = (date, crop, quantity, replant) => ({
     date,
     crop,
@@ -120,14 +115,6 @@ export default class Event extends React.Component {
   render() {
     return (
       <StyledUpdateCropEvent>
-        <div>Events</div>
-        {this.props.events.map(event => (
-          <UpdateCropEventForm
-            key={event.id + event.quantity}
-            event={event}
-            handleUpdateCropEvent={this.handleUpdateCropEvent}
-          />
-        ))}
         <div>Crops</div>
         <CreateCropEventForm
           crops={this.props.crops}

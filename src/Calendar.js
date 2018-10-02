@@ -1,8 +1,12 @@
 import React from "react";
 import styled from "styled-components";
 import produce from "immer";
+import range from "lodash/range";
 import EventEditor from "./calendar/EventEditor";
+
 import Season from "./calendar/Season";
+import Day from "./calendar/Day";
+
 import events from "./data/events";
 import crops from "./data/crops";
 
@@ -12,27 +16,25 @@ const CalendarLayout = styled.div`
   height: 100%
 `;
 
-const days_in_season = 28;
-const days_in_year = 112;
-
-const seasons = [
-  { name: "spring", start: 1, end: days_in_season },
-  { name: "summer", start: days_in_season + 1, end: days_in_season * 2 },
-  { name: "fall", start: days_in_season * 2 + 1, end: days_in_season * 3 },
-  { name: "winter", start: days_in_season * 3 + 1, end: days_in_year }
-];
+const events_by_date = range(128).map(
+  date => (events[date] ? events[date] : [])
+);
 
 export default class Calendar extends React.Component {
-  static crops = seasons.reduce((crops_by_season, season) => {
-    crops_by_season[season.name] = crops.filter(
-      crop => crop.start <= season.start && crop.end > season.start
-    );
-    return crops_by_season;
-  }, {});
+  static crops = range(128).map(date =>
+    crops.filter(crop => date >= crop.start && date + crop.growth <= crop.end)
+  );
+
+  static seasons = [
+    { name: "spring", start: 1 },
+    { name: "summer", start: 29 },
+    { name: "fall", start: 57 },
+    { name: "winter", start: 85 }
+  ];
 
   state = {
-    events: events,
-    day: 1,
+    events: events_by_date,
+    date: 1,
     visible: true
   };
 
@@ -95,31 +97,40 @@ export default class Calendar extends React.Component {
     );
   };
 
+  handleSelectDate = date => {
+    this.setState({ date });
+  };
+
   render() {
+    const seasons = Calendar.seasons.map(season => (
+      <Season key={season.name} season={season}>
+        {range(28).map(day => {
+          const date = day + season.start;
+          return (
+            <Day
+              key={day}
+              day={day + 1}
+              date={date}
+              selected={this.state.date === date}
+              events={this.state.events[date]}
+              selectDate={this.handleSelectDate}
+            />
+          );
+        })}
+      </Season>
+    ));
     return (
       <React.Fragment>
         <EventEditor
-          date={this.state.day}
-          crops={Calendar.crops.spring}
-          events={this.state.events[this.state.day]}
+          date={this.state.date}
+          crops={Calendar.crops[this.state.date]}
+          events={this.state.events[this.state.date]}
           createEvents={this.createEvents}
           updateEvents={this.updateEvents}
           removeEvents={this.removeEvents}
         />
 
-        <CalendarLayout>
-          {seasons.map(season => (
-            <Season
-              key={season.name}
-              season={season}
-              events={this.state.events}
-              crops={Calendar.crops[season.name]}
-              createEvents={this.createEvents}
-              updateEvents={this.updateEvents}
-              removeEvents={this.removeEvents}
-            />
-          ))}
-        </CalendarLayout>
+        <CalendarLayout>{seasons}</CalendarLayout>
       </React.Fragment>
     );
   }
