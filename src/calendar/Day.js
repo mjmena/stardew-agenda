@@ -26,13 +26,13 @@ const StyledEvent = styled.div`
   flex: 1;
 `;
 
-export default class Day extends React.Component {
+export default class Day extends React.PureComponent {
   getEditableEvents = memoize(events =>
     events.filter(event => event.type === "plant" || event.type === "replant")
   );
 
   handleClick = event => {
-    this.props.selectDate(this.props.date);
+    this.props.selectDate(this.props.day_in_year);
   };
 
   render() {
@@ -50,12 +50,11 @@ export default class Day extends React.Component {
         <EventDisplay event={event} />
       </StyledEvent>
     ));
-    console.log(this.props.selected);
 
     return (
       <StyledDay selected={this.props.selected} onClick={this.handleClick}>
         <StyledDayTitle>
-          {this.props.day} {title}
+          {this.props.day_in_month} {title}
         </StyledDayTitle>
         <StyledEvents>{events}</StyledEvents>
       </StyledDay>

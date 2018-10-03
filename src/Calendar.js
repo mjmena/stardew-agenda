@@ -105,14 +105,14 @@ export default class Calendar extends React.Component {
     const seasons = Calendar.seasons.map(season => (
       <Season key={season.name} season={season}>
         {range(28).map(day => {
-          const date = day + season.start;
+          const day_in_year = day + season.start;
           return (
             <Day
               key={day}
-              day={day + 1}
-              date={date}
-              selected={this.state.date === date}
-              events={this.state.events[date]}
+              day_in_month={day + 1}
+              day_in_year={day_in_year}
+              selected={this.state.date === day_in_year}
+              events={this.state.events[day_in_year]}
               selectDate={this.handleSelectDate}
             />
           );
