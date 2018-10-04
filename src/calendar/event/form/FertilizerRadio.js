@@ -3,12 +3,15 @@ import React from "react";
 export default class FertilizerRadio extends React.Component {
   render() {
     return FertilizerRadio.fertilizer.map(fertilizer => (
-      <input
-        type="radio"
-        id={fertilizer.id}
-        name={fertilizer.id}
-        value={fertilizer.id}
-      />
+      <React.Fragment key={fertilizer.id}>
+        <input
+          type="radio"
+          id={fertilizer.id}
+          name={fertilizer.id}
+          value={fertilizer.id}
+        />
+        <label htmlFor={fertilizer.id}>{fertilizer.name}</label>
+      </React.Fragment>
     ));
   }
 

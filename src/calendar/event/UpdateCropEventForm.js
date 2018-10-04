@@ -2,6 +2,7 @@ import React from "react";
 import debounce from "lodash/debounce";
 import { Row, Cell } from "./Table";
 import NumberInput from "./form/NumberInput";
+import FertilizerRadio from "./form/FertilizerRadio";
 import CropImage from "../../components/CropImage";
 
 export default class UpdateCropEventForm extends React.Component {
@@ -79,6 +80,9 @@ export default class UpdateCropEventForm extends React.Component {
               onChange={this.toggleReplant}
             />
           )}
+        </Cell>
+        <Cell>
+          <FertilizerRadio />
         </Cell>
         <Cell>
           <input type="submit" value="Submit" />
