@@ -113,6 +113,16 @@ export default class Event extends React.Component {
   };
 
   render() {
+    const updateable_events = this.props.events
+      .filter(event => event.type === "plant" || event.type === "replant")
+      .map(event => (
+        <UpdateCropEventForm
+          key={event.id}
+          {...event}
+          handleUpdateCropEvent={this.handleUpdateCropEvent}
+        />
+      ));
+
     return (
       <StyledUpdateCropEvent>
         <div>Crops</div>
@@ -120,6 +130,8 @@ export default class Event extends React.Component {
           crops={this.props.crops}
           handleCreateCropEvent={this.handleCreateCropEvent}
         />
+        <div>Events</div>
+        {updateable_events}
       </StyledUpdateCropEvent>
     );
   }

@@ -122,6 +122,7 @@ export default class Calendar extends React.Component {
     return (
       <React.Fragment>
         <EventEditor
+          key={this.state.date}
           date={this.state.date}
           crops={Calendar.crops[this.state.date]}
           events={this.state.events[this.state.date]}

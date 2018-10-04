@@ -24,6 +24,8 @@ export default class CreateCropEventForm extends React.Component {
     replant: false
   };
 
+  reset_state = this.state;
+
   handleCropChange = crop => {
     if (crop === this.state.crop) return;
     this.setState({
@@ -62,18 +64,24 @@ export default class CreateCropEventForm extends React.Component {
       this.state.quantity,
       this.state.replant
     );
+    this.setState(this.reset_state);
   };
 
   render() {
+    const crop_select = (
+      <CropSelect
+        crop={this.state.crop}
+        crops={this.props.crops}
+        onChange={this.handleCropChange}
+      />
+    );
+    if (!this.state.crop) {
+      return crop_select;
+    }
+
     return (
       <StyledForm onSubmit={this.handleSubmit}>
-        <StyledPrimaryInput>
-          <CropSelect
-            crop={this.state.crop}
-            crops={this.props.crops}
-            onChange={this.handleCropChange}
-          />
-        </StyledPrimaryInput>
+        <StyledPrimaryInput>{crop_select}</StyledPrimaryInput>
         <StyledSecondaryInput>
           <input
             type="text"

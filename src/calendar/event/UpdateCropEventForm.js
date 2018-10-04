@@ -1,37 +1,40 @@
 import React from "react";
 import debounce from "lodash/debounce";
 import { Row, Cell } from "./Table";
-
+import NumberInput from "./form/NumberInput";
 import CropImage from "../../components/CropImage";
 
 export default class UpdateCropEventForm extends React.Component {
   state = {
-    quantity: this.props.event.quantity,
-    price: this.props.event.quantity * this.props.event.crop.buy,
-    replant: this.props.event.type === "replant"
+    quantity: this.props.quantity,
+    price: this.props.quantity * this.props.crop.buy,
+    replant: this.props.type === "replant"
   };
 
-  updatePrice = event => {
-    const price = Number.parseInt(event.target.value, 10);
-    const calculated_price = price - (price % this.props.event.crop.buy);
-    this.setState({
-      price,
-      calculated_price,
-      quantity: calculated_price / this.props.event.crop.buy
-    });
-    this.clampPrice();
+  updatePrice = price => {
+    if (price) {
+      this.setState({
+        price,
+        quantity: Math.floor(price / this.props.crop.buy)
+      });
+      this.clampPrice();
+    } else this.setState({ price, quantity: null });
   };
 
-  updateQuantity = event => {
-    const quantity = Number.parseInt(event.target.value, 10);
-    this.setState({
-      quantity,
-      price: quantity * this.props.event.crop.buy
-    });
+  updateQuantity = quantity => {
+    if (quantity)
+      this.setState({
+        quantity,
+        price: quantity * this.props.crop.buy
+      });
+    else this.setState({ quantity, price: null });
   };
 
   clampPrice = debounce(() => {
-    this.setState(state => ({ price: state.calculated_price }));
+    if (this.state.price)
+      this.setState(state => ({
+        price: state.quantity * this.props.crop.buy
+      }));
   }, 1000);
 
   toggleReplant = event => {
@@ -41,40 +44,34 @@ export default class UpdateCropEventForm extends React.Component {
   handleSubmit = event => {
     event.preventDefault();
     this.props.handleUpdateCropEvent(
-      this.props.event,
+      this.props.crop,
       this.state.quantity,
       this.state.replant
     );
   };
 
   render() {
-    const { event } = this.props;
+    const { crop } = this.props;
     return (
       <Row onSubmit={this.handleSubmit}>
         <Cell>
-          <CropImage crop={event.crop} />
-          {event.crop.name}
+          <CropImage crop={crop} />
+          {crop.name}
         </Cell>
         <Cell>
-          <input
-            placeholder="Quantity"
-            type="text"
-            name="quantity"
-            value={this.state.quantity !== 0 ? this.state.quantity : ""}
-            onChange={this.updateQuantity}
+          <NumberInput
+            value={this.state.quantity}
+            handleChange={this.updateQuantity}
           />
         </Cell>
         <Cell>
-          <input
-            placeholder="Price"
-            type="text"
-            name="price"
+          <NumberInput
             value={this.state.price}
-            onChange={this.updatePrice}
+            handleChange={this.updatePrice}
           />
         </Cell>
         <Cell>
-          {!event.crop.regrowth && (
+          {!crop.regrowth && (
             <input
               type="checkbox"
               name="replant"
