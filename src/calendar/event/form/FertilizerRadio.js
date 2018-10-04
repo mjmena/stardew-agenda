@@ -2,20 +2,23 @@ import React from "react";
 
 export default class FertilizerRadio extends React.Component {
   render() {
-    return FertilizerRadio.fertilizer.map(fertilizer => (
+    return FertilizerRadio.fertilizers.map(fertilizer => (
       <React.Fragment key={fertilizer.id}>
         <input
           type="radio"
           id={fertilizer.id}
           name={fertilizer.id}
           value={fertilizer.id}
+          checked={
+            this.props.fertilizer && this.props.fertilizer.id === fertilizer.id
+          }
         />
         <label htmlFor={fertilizer.id}>{fertilizer.name}</label>
       </React.Fragment>
     ));
   }
 
-  static fertilizer = [
+  static fertilizers = [
     {
       buy: 0,
       id: "none",
@@ -44,4 +47,6 @@ export default class FertilizerRadio extends React.Component {
       name: "Delux Speed-Gro"
     }
   ];
+
+  static defaultProps = FertilizerRadio.fertilizers[0];
 }

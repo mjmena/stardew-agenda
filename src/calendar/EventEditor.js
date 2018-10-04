@@ -1,8 +1,7 @@
 import React from "react";
 import range from "lodash/range";
 import styled from "styled-components";
-import CreateCropEventForm from "./event/CreateCropEventForm";
-import UpdateCropEventForm from "./event/UpdateCropEventForm";
+import CropEventForm from "./event/CropEventForm";
 
 export default class Event extends React.Component {
   createPlantCropEvent = (date, crop, quantity, replant) => ({
@@ -113,26 +112,23 @@ export default class Event extends React.Component {
   };
 
   render() {
-    const updateable_events = this.props.events
-      .filter(event => event.type === "plant" || event.type === "replant")
-      .map(event => (
-        <UpdateCropEventForm
-          key={event.id}
-          {...event}
-          handleUpdateCropEvent={this.handleUpdateCropEvent}
-        />
-      ));
+    // const editable_events = this.props.events
+    //   .filter(event => event.type === "plant" || event.type === "replant")
+    //   .map(event => (
+    //     <CropEventForm
+    //       {...event}
+    //       crops={this.props.crops}
+    //       handleCropEventSubmit={this.handleUpdateCropEvent}
+    //     />
+    //   ));
 
     return (
-      <StyledUpdateCropEvent>
-        <div>Crops</div>
-        <CreateCropEventForm
+      <>
+        <CropEventForm
           crops={this.props.crops}
-          handleCreateCropEvent={this.handleCreateCropEvent}
+          handleCropEventSubmit={this.handleCreateCropEvent}
         />
-        <div>Events</div>
-        {updateable_events}
-      </StyledUpdateCropEvent>
+      </>
     );
   }
 }
@@ -140,9 +136,3 @@ export default class Event extends React.Component {
 Event.defaultProps = {
   events: []
 };
-
-const StyledUpdateCropEvent = styled.div`
-  display: flex;
-  width: 100%;
-  flex-flow: column nowrap;
-`;

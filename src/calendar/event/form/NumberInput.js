@@ -6,7 +6,6 @@ import debounce from "lodash/debounce";
 export default class NumberInput extends React.Component {
   handleChange = event => {
     const number = Number.parseInt(event.target.value.replace(/\D/, ""), 10);
-    console.log(number);
 
     if (Number.isNaN(number)) {
       this.props.handleChange(null);
