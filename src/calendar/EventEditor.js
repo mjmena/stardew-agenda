@@ -1,26 +1,28 @@
 import React from "react";
 import range from "lodash/range";
-import styled from "styled-components";
 import CropEventForm from "./event/CropEventForm";
+import UpdateCropEventForm from "./event/UpdateCropEventForm";
 
 export default class Event extends React.Component {
-  createPlantCropEvent = (date, crop, quantity, replant) => ({
+  createPlantCropEvent = (date, crop, quantity, replant, fertilizer) => ({
     date,
     crop,
     quantity,
+    fertilizer,
     type: !replant ? "plant" : "replant",
     id: `${!replant ? "plant" : "replant"}-${crop.id}`
   });
 
-  createHarvestCropEvent = (date, crop, quantity) => ({
+  createHarvestCropEvent = (date, crop, quantity, fertilizer) => ({
     date,
     crop,
     quantity,
+    fertilizer,
     type: "harvest",
     id: `harvest-${crop.id}`
   });
 
-  extrapolateCropEventDates = (date, crop, replant) => {
+  extrapolateCropEventDates = (date, crop, replant, fertilizer) => {
     const plant_dates = !replant
       ? [date]
       : range(date, crop.end - crop.growth + 1, crop.growth);
@@ -40,27 +42,28 @@ export default class Event extends React.Component {
     }
   };
 
-  handleCreateCropEvent = (crop, quantity, replant) => {
+  handleCreateCropEvent = (crop, quantity, replant, fertilizer) => {
     const dates = this.extrapolateCropEventDates(
       this.props.date,
       crop,
-      replant
+      replant,
+      fertilizer
     );
 
     this.props.createEvents(
       dates.plant.map(date =>
-        this.createPlantCropEvent(date, crop, quantity, replant)
+        this.createPlantCropEvent(date, crop, quantity, replant, fertilizer)
       )
     );
 
     this.props.createEvents(
       dates.harvest.map(date =>
-        this.createHarvestCropEvent(date, crop, quantity)
+        this.createHarvestCropEvent(date, crop, quantity, fertilizer)
       )
     );
   };
 
-  handleUpdateCropEvent = (event, quantity, replant) => {
+  handleUpdateCropEvent = (event, quantity, replant, fertilizer) => {
     if (
       (!replant && event.type === "plant") ||
       (replant && event.type === "replant")
@@ -73,7 +76,13 @@ export default class Event extends React.Component {
 
       this.props.updateEvents(
         dates.plant.map(date =>
-          this.createPlantCropEvent(date, event.crop, quantity, replant)
+          this.createPlantCropEvent(
+            date,
+            event.crop,
+            quantity,
+            replant,
+            fertilizer
+          )
         )
       );
       this.props.createEvents(
@@ -81,12 +90,13 @@ export default class Event extends React.Component {
           this.createHarvestCropEvent(
             date,
             event.crop,
-            quantity - event.quantity
+            quantity - event.quantity,
+            fertilizer
           )
         )
       );
     } else {
-      this.handleCreateCropEvent(event.crop, quantity, replant);
+      this.handleCreateCropEvent(event.crop, quantity, replant, fertilizer);
       this.handleRemoveCropEvent(event, !replant);
     }
   };
@@ -95,32 +105,45 @@ export default class Event extends React.Component {
     const dates = this.extrapolateCropEventDates(
       this.props.date,
       event.crop,
-      replant
+      replant,
+      event.fertilizer
     );
 
     this.props.removeEvents(
       dates.plant.map(date =>
-        this.createPlantCropEvent(date, event.crop, event.quantity, replant)
+        this.createPlantCropEvent(
+          date,
+          event.crop,
+          event.quantity,
+          replant,
+          event.fertilizer
+        )
       )
     );
 
     this.props.removeEvents(
       dates.harvest.map(date =>
-        this.createHarvestCropEvent(date, event.crop, event.quantity, replant)
+        this.createHarvestCropEvent(
+          date,
+          event.crop,
+          event.quantity,
+          replant,
+          event.fertilizer
+        )
       )
     );
   };
 
   render() {
-    // const editable_events = this.props.events
-    //   .filter(event => event.type === "plant" || event.type === "replant")
-    //   .map(event => (
-    //     <CropEventForm
-    //       {...event}
-    //       crops={this.props.crops}
-    //       handleCropEventSubmit={this.handleUpdateCropEvent}
-    //     />
-    //   ));
+    const editable_events = this.props.events
+      .filter(event => event.type === "plant" || event.type === "replant")
+      .map(event => (
+        <UpdateCropEventForm
+          key={event.id}
+          event={event}
+          handleCropEventSubmit={this.handleUpdateCropEvent}
+        />
+      ));
 
     return (
       <>
@@ -128,6 +151,7 @@ export default class Event extends React.Component {
           crops={this.props.crops}
           handleCropEventSubmit={this.handleCreateCropEvent}
         />
+        {editable_events}
       </>
     );
   }

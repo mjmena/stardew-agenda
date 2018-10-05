@@ -1,57 +1,55 @@
 import React from "react";
-import debounce from "lodash/debounce";
-import { Row, Cell } from "./Table";
-import NumberInput from "./form/NumberInput";
-import FertilizerRadio from "./form/FertilizerRadio";
-import CropImage from "../../components/CropImage";
+import styled from "styled-components";
+import CropEventDetailsFragment from "./form/CropEventDetailsFragment";
 
 export default class UpdateCropEventForm extends React.Component {
   state = {
-    quantity: this.props.quantity,
-    price: this.props.quantity * this.props.crop.buy,
-    replant: this.props.type === "replant",
-    fertilizer: this.props.fertilizer
+    quantity: this.props.event.quantity,
+    price: this.props.event.quantity * this.props.event.crop.buy,
+    replant: this.props.event.type === "replant",
+    fertilizer: this.props.event.fertilizer
   };
 
   handleSubmit = event => {
     event.preventDefault();
-    this.props.handleUpdateCropEvent(
-      this.props.crop,
+    this.props.handleCropEventSubmit(
+      this.props.event,
       this.state.quantity,
-      this.state.replant
+      this.state.replant,
+      this.state.fertilizer
     );
   };
 
+  setDetails = details => {
+    this.setState(details);
+  };
+
   render() {
-    const Wrapper = this.props.wrapper;
     return (
-      <>
-        <Wrapper>
-          <NumberInput
-            value={this.state.quantity}
-            handleChange={this.updateQuantity}
-          />
-        </Wrapper>
-        <Wrapper>
-          <NumberInput
-            value={this.state.price}
-            handleChange={this.updatePrice}
-          />
-        </Wrapper>
-        <Wrapper>
-          {!crop.regrowth && (
-            <input
-              type="checkbox"
-              name="replant"
-              checked={this.state.replant}
-              onChange={this.toggleReplant}
-            />
-          )}
-        </Wrapper>
-        <Wrapper>
-          <FertilizerRadio />
-        </Wrapper>
-      </>
+      <StyledForm onSubmit={this.handleSubmit}>
+        <CropEventDetailsFragment
+          crop={this.props.event.crop}
+          quantity={this.state.quantity}
+          price={this.state.price}
+          replant={this.state.replant}
+          fertilizer={this.state.fertilizer}
+          setDetails={this.setDetails}
+          wrapper={StyledSecondaryInput}
+        />
+
+        <StyledSecondaryInput>
+          <button>Submit</button>
+        </StyledSecondaryInput>
+      </StyledForm>
     );
   }
 }
+
+const StyledForm = styled.form`
+  display: flex
+  flex-flow: row nowrap
+`;
+
+const StyledSecondaryInput = styled.div`
+  flex: 1;
+`;

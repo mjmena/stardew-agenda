@@ -1,6 +1,6 @@
 const fs = require("fs");
 const data = require("./data");
-
+//sanatize crops
 data.crops.forEach(crop => {
   crop.growth = crop.stages.reduce((total, stage) => total + stage, 0);
   delete crop.stages;
@@ -26,6 +26,7 @@ data.crops.forEach(crop => {
   delete crop.seasons;
 });
 
+//sanitize events
 const events = Object.assign({}, data.events.Spring);
 Object.entries(data.events.Summer).forEach(
   ([key, value]) => (events[Number.parseInt(key) + 28] = value)
@@ -52,3 +53,8 @@ Object.keys(events).forEach(key => {
 
 fs.writeFileSync("./crops.json", JSON.stringify(data.crops, null, 2), "utf-8");
 fs.writeFileSync("./events.json", JSON.stringify(events, null, 2), "utf-8");
+fs.writeFileSync(
+  "./fertilizers.json",
+  JSON.stringify(data.fertilizer, null, 2),
+  "utf-8"
+);

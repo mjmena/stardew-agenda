@@ -2,6 +2,7 @@ import React from "react";
 import styled from "styled-components";
 import CropSelect from "./form/CropSelect";
 import CropEventDetailsFragment from "./form/CropEventDetailsFragment";
+import fertilizers from "./../../data/fertilizers";
 
 export default class CreateCropEventForm extends React.Component {
   static defaultProps = {
@@ -30,7 +31,8 @@ export default class CreateCropEventForm extends React.Component {
       crop: crop,
       quantity: 1,
       price: crop.buy,
-      replant: false
+      replant: false,
+      fertilizer: fertilizers[0]
     });
   };
 
@@ -39,7 +41,8 @@ export default class CreateCropEventForm extends React.Component {
     this.props.handleCropEventSubmit(
       this.state.crop,
       this.state.quantity,
-      this.state.replant
+      this.state.replant,
+      this.state.fertilizer
     );
   };
   setDetails = details => {

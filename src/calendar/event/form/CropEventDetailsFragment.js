@@ -34,6 +34,10 @@ export default class CropEventDetailsFragment extends React.Component {
     this.props.setDetails({ replant: !this.props.replant });
   };
 
+  updateFertilizer = fertilizer => {
+    this.props.setDetails({ fertilizer });
+  };
+
   render() {
     const Wrapper = this.props.wrapper;
     return (
@@ -61,7 +65,10 @@ export default class CropEventDetailsFragment extends React.Component {
           )}
         </Wrapper>
         <Wrapper>
-          <FertilizerRadio />
+          <FertilizerRadio
+            fertilizer={this.props.fertilizer}
+            updateFertilizer={this.updateFertilizer}
+          />
         </Wrapper>
       </>
     );
