@@ -38,37 +38,40 @@ export default class Calendar extends React.Component {
   render() {
     return (
       <EventProvider>
-        {({ events, ...handlers }) => (
-          <React.Fragment>
-            <EventEditor
-              key={this.state.date}
-              date={this.state.date}
-              crops={Calendar.crops[this.state.date]}
-              events={events[this.state.date]}
-              {...handlers}
-            />
+        {(events, createCropEvent, updateCropEvent, removeCropEvent) => {
+          return (
+            <React.Fragment>
+              <EventEditor
+                key={this.state.date}
+                date={this.state.date}
+                crops={Calendar.crops[this.state.date]}
+                events={events[this.state.date]}
+                createCropEvent={createCropEvent}
+                updateCropEvent={updateCropEvent}
+              />
 
-            <CalendarLayout>
-              {Calendar.seasons.map(season => (
-                <Season key={season.name} season={season}>
-                  {range(28).map(day => {
-                    const day_in_year = day + season.start;
-                    return (
-                      <Day
-                        key={day}
-                        day_in_month={day + 1}
-                        day_in_year={day_in_year}
-                        selected={this.state.date === day_in_year}
-                        events={events[day_in_year]}
-                        selectDate={this.handleSelectDate}
-                      />
-                    );
-                  })}
-                </Season>
-              ))}
-            </CalendarLayout>
-          </React.Fragment>
-        )}
+              <CalendarLayout>
+                {Calendar.seasons.map(season => (
+                  <Season key={season.name} season={season}>
+                    {range(28).map(day => {
+                      const day_in_year = day + season.start;
+                      return (
+                        <Day
+                          key={day}
+                          day_in_month={day + 1}
+                          day_in_year={day_in_year}
+                          selected={this.state.date === day_in_year}
+                          events={events[day_in_year]}
+                          selectDate={this.handleSelectDate}
+                        />
+                      );
+                    })}
+                  </Season>
+                ))}
+              </CalendarLayout>
+            </React.Fragment>
+          );
+        }}
       </EventProvider>
     );
   }

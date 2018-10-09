@@ -1,5 +1,6 @@
 import React from "react";
 import styled from "styled-components";
+import CropEvent from "./CropEvent";
 import CropEventDetailsFragment from "./form/CropEventDetailsFragment";
 
 export default class UpdateCropEventForm extends React.Component {
@@ -12,11 +13,17 @@ export default class UpdateCropEventForm extends React.Component {
 
   handleSubmit = event => {
     event.preventDefault();
-    this.props.handleCropEventSubmit(
+
+    const { quantity, replant, fertilizer } = this.state;
+    this.props.updateCropEvent(
       this.props.event,
-      this.state.quantity,
-      this.state.replant,
-      this.state.fertilizer
+      new CropEvent({
+        date: this.props.event.date,
+        crop: this.props.event.crop,
+        quantity,
+        replant,
+        fertilizer
+      })
     );
   };
 
