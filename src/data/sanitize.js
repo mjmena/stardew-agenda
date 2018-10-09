@@ -16,26 +16,30 @@ data.crops.forEach(crop => {
   const start = crop.seasons.shift();
   let end = crop.seasons.pop();
   if (!end) end = start;
-  if (start === "spring") crop.start = 1;
-  else if (start === "summer") crop.start = 28 + 1;
-  else if (start === "fall") crop.start = 28 * 2 + 1;
+  if (start === "spring") crop.start = 0;
+  else if (start === "summer") crop.start = 28;
+  else if (start === "fall") crop.start = 28 * 2;
 
-  if (end === "spring") crop.end = 28;
-  else if (end === "summer") crop.end = 28 * 2;
-  else if (end === "fall") crop.end = 28 * 3;
+  if (end === "spring") crop.end = 28 - 1;
+  else if (end === "summer") crop.end = 28 * 2 - 1;
+  else if (end === "fall") crop.end = 28 * 3 - 1;
   delete crop.seasons;
 });
 
 //sanitize events
-const events = Object.assign({}, data.events.Spring);
+const events = {};
+
+Object.entries(data.events.Spring).forEach(
+  ([key, value]) => (events[Number.parseInt(key) - 1] = value)
+);
 Object.entries(data.events.Summer).forEach(
-  ([key, value]) => (events[Number.parseInt(key) + 28] = value)
+  ([key, value]) => (events[Number.parseInt(key) + 28 - 1] = value)
 );
 Object.entries(data.events.Fall).forEach(
-  ([key, value]) => (events[Number.parseInt(key) + 28 * 2] = value)
+  ([key, value]) => (events[Number.parseInt(key) + 28 * 2 - 1] = value)
 );
 Object.entries(data.events.Winter).forEach(
-  ([key, value]) => (events[Number.parseInt(key) + 28 * 3] = value)
+  ([key, value]) => (events[Number.parseInt(key) + 28 * 3 - 1] = value)
 );
 
 Object.keys(events).forEach(key => {

@@ -8,7 +8,7 @@ export default class EventEditor extends React.Component {
       .filter(event => event.type === "plant" || event.type === "replant")
       .map(event => (
         <UpdateCropEventForm
-          key={event.id}
+          key={event.id + event.quantity}
           event={event}
           updateCropEvent={this.props.updateCropEvent}
         />

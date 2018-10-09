@@ -20,10 +20,10 @@ export default class Calendar extends React.Component {
   );
 
   static seasons = [
-    { name: "spring", start: 1 },
-    { name: "summer", start: 29 },
-    { name: "fall", start: 57 },
-    { name: "winter", start: 85 }
+    { name: "spring", start: 0 },
+    { name: "summer", start: 28 },
+    { name: "fall", start: 56 },
+    { name: "winter", start: 84 }
   ];
 
   state = {

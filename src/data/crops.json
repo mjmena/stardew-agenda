@@ -6,8 +6,8 @@
     "name": "Amaranth",
     "sell": 150,
     "growth": 7,
-    "start": 57,
-    "end": 84
+    "start": 56,
+    "end": 83
   },
   {
     "buy": 700,
@@ -17,8 +17,8 @@
     "sell": 550,
     "growth": 28,
     "regrowth": 7,
-    "start": 1,
-    "end": 84
+    "start": 0,
+    "end": 83
   },
   {
     "buy": 30,
@@ -27,8 +27,8 @@
     "name": "Artichoke",
     "sell": 160,
     "growth": 8,
-    "start": 57,
-    "end": 84
+    "start": 56,
+    "end": 83
   },
   {
     "buy": 20,
@@ -37,8 +37,8 @@
     "name": "Beet",
     "sell": 100,
     "growth": 6,
-    "start": 57,
-    "end": 84
+    "start": 56,
+    "end": 83
   },
   {
     "buy": 30,
@@ -47,8 +47,8 @@
     "name": "Blue Jazz",
     "sell": 50,
     "growth": 7,
-    "start": 1,
-    "end": 28
+    "start": 0,
+    "end": 27
   },
   {
     "buy": 80,
@@ -63,8 +63,8 @@
     "sell": 50,
     "growth": 13,
     "regrowth": 4,
-    "start": 29,
-    "end": 56
+    "start": 28,
+    "end": 55
   },
   {
     "buy": 50,
@@ -73,8 +73,8 @@
     "name": "Bok Choy",
     "sell": 80,
     "growth": 4,
-    "start": 57,
-    "end": 84
+    "start": 56,
+    "end": 83
   },
   {
     "buy": 80,
@@ -83,8 +83,8 @@
     "name": "Cauliflower",
     "sell": 175,
     "growth": 12,
-    "start": 1,
-    "end": 28
+    "start": 0,
+    "end": 27
   },
   {
     "buy": 30,
@@ -99,8 +99,8 @@
     "sell": 15,
     "growth": 10,
     "regrowth": 2,
-    "start": 1,
-    "end": 56
+    "start": 0,
+    "end": 55
   },
   {
     "buy": 150,
@@ -115,8 +115,8 @@
     "sell": 50,
     "growth": 14,
     "regrowth": 4,
-    "start": 29,
-    "end": 84
+    "start": 28,
+    "end": 83
   },
   {
     "buy": 240,
@@ -131,8 +131,8 @@
     "sell": 75,
     "growth": 7,
     "regrowth": 5,
-    "start": 57,
-    "end": 84
+    "start": 56,
+    "end": 83
   },
   {
     "buy": 20,
@@ -147,8 +147,8 @@
     "sell": 60,
     "growth": 5,
     "regrowth": 5,
-    "start": 57,
-    "end": 84
+    "start": 56,
+    "end": 83
   },
   {
     "buy": 200,
@@ -157,8 +157,8 @@
     "name": "Fairy Rose",
     "sell": 290,
     "growth": 12,
-    "start": 57,
-    "end": 84
+    "start": 56,
+    "end": 83
   },
   {
     "buy": 40,
@@ -167,8 +167,8 @@
     "name": "Garlic",
     "sell": 60,
     "growth": 4,
-    "start": 1,
-    "end": 28
+    "start": 0,
+    "end": 27
   },
   {
     "buy": 60,
@@ -183,8 +183,8 @@
     "sell": 80,
     "growth": 10,
     "regrowth": 3,
-    "start": 57,
-    "end": 84
+    "start": 56,
+    "end": 83
   },
   {
     "buy": 60,
@@ -199,8 +199,8 @@
     "sell": 40,
     "growth": 10,
     "regrowth": 3,
-    "start": 1,
-    "end": 28
+    "start": 0,
+    "end": 27
   },
   {
     "buy": 60,
@@ -215,8 +215,8 @@
     "sell": 25,
     "growth": 11,
     "regrowth": 1,
-    "start": 29,
-    "end": 56
+    "start": 28,
+    "end": 55
   },
   {
     "buy": 40,
@@ -231,8 +231,8 @@
     "sell": 40,
     "growth": 5,
     "regrowth": 3,
-    "start": 29,
-    "end": 56
+    "start": 28,
+    "end": 55
   },
   {
     "buy": 70,
@@ -241,8 +241,8 @@
     "name": "Kale",
     "sell": 110,
     "growth": 6,
-    "start": 1,
-    "end": 28
+    "start": 0,
+    "end": 27
   },
   {
     "buy": 80,
@@ -251,8 +251,8 @@
     "name": "Melon",
     "sell": 250,
     "growth": 12,
-    "start": 29,
-    "end": 56
+    "start": 28,
+    "end": 55
   },
   {
     "buy": 20,
@@ -261,8 +261,8 @@
     "name": "Parsnip",
     "sell": 35,
     "growth": 4,
-    "start": 1,
-    "end": 28
+    "start": 0,
+    "end": 27
   },
   {
     "buy": 100,
@@ -271,8 +271,8 @@
     "name": "Poppy",
     "sell": 140,
     "growth": 7,
-    "start": 29,
-    "end": 56
+    "start": 28,
+    "end": 55
   },
   {
     "buy": 50,
@@ -286,8 +286,8 @@
     "name": "Potato",
     "sell": 80,
     "growth": 6,
-    "start": 1,
-    "end": 28
+    "start": 0,
+    "end": 27
   },
   {
     "buy": 100,
@@ -296,8 +296,8 @@
     "name": "Pumpkin",
     "sell": 320,
     "growth": 13,
-    "start": 57,
-    "end": 84
+    "start": 56,
+    "end": 83
   },
   {
     "buy": 40,
@@ -306,8 +306,8 @@
     "name": "Radish",
     "sell": 90,
     "growth": 6,
-    "start": 29,
-    "end": 56
+    "start": 28,
+    "end": 55
   },
   {
     "buy": 100,
@@ -316,8 +316,8 @@
     "name": "Red Cabbage",
     "sell": 260,
     "growth": 9,
-    "start": 29,
-    "end": 56
+    "start": 28,
+    "end": 55
   },
   {
     "buy": 100,
@@ -326,8 +326,8 @@
     "name": "Rhubarb",
     "sell": 220,
     "growth": 13,
-    "start": 1,
-    "end": 28
+    "start": 0,
+    "end": 27
   },
   {
     "buy": 400,
@@ -336,8 +336,8 @@
     "name": "Starfruit",
     "sell": 750,
     "growth": 13,
-    "start": 29,
-    "end": 56
+    "start": 28,
+    "end": 55
   },
   {
     "buy": 100,
@@ -352,8 +352,8 @@
     "sell": 120,
     "growth": 8,
     "regrowth": 4,
-    "start": 1,
-    "end": 28
+    "start": 0,
+    "end": 27
   },
   {
     "buy": 50,
@@ -362,8 +362,8 @@
     "name": "Summer Spangle",
     "sell": 90,
     "growth": 8,
-    "start": 29,
-    "end": 56
+    "start": 28,
+    "end": 55
   },
   {
     "buy": 125,
@@ -372,8 +372,8 @@
     "name": "Sunflower",
     "sell": 80,
     "growth": 8,
-    "start": 29,
-    "end": 84
+    "start": 28,
+    "end": 83
   },
   {
     "buy": 1000,
@@ -382,8 +382,8 @@
     "name": "Sweet Gem Berry",
     "sell": 3000,
     "growth": 24,
-    "start": 57,
-    "end": 84
+    "start": 56,
+    "end": 83
   },
   {
     "buy": 50,
@@ -398,8 +398,8 @@
     "sell": 60,
     "growth": 11,
     "regrowth": 4,
-    "start": 29,
-    "end": 56
+    "start": 28,
+    "end": 55
   },
   {
     "buy": 20,
@@ -408,8 +408,8 @@
     "name": "Tulip",
     "sell": 30,
     "growth": 6,
-    "start": 1,
-    "end": 28
+    "start": 0,
+    "end": 27
   },
   {
     "buy": 10,
@@ -418,8 +418,8 @@
     "name": "Wheat",
     "sell": 25,
     "growth": 4,
-    "start": 29,
-    "end": 84
+    "start": 28,
+    "end": 83
   },
   {
     "buy": 60,
@@ -428,7 +428,7 @@
     "name": "Yam",
     "sell": 160,
     "growth": 10,
-    "start": 57,
-    "end": 84
+    "start": 56,
+    "end": 83
   }
 ]

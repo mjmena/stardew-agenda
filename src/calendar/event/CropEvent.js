@@ -1,7 +1,7 @@
 export default class CropEvent {
   constructor({ date, crop, fertilizer, quantity, type = "plant", replant }) {
     Object.assign(this, { date, crop, fertilizer, quantity, type, replant });
-    console.log(`${this.id} ${date}`);
+    console.log(type);
   }
 
   get id() {

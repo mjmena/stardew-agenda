@@ -7,7 +7,7 @@ export default class UpdateCropEventForm extends React.Component {
   state = {
     quantity: this.props.event.quantity,
     price: this.props.event.quantity * this.props.event.crop.buy,
-    replant: this.props.event.type === "replant",
+    replant: this.props.event.shouldReplant(),
     fertilizer: this.props.event.fertilizer
   };
 
