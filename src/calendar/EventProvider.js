@@ -20,59 +20,62 @@ export default class EventProvider extends React.Component {
       : plant_dates.map(plant_date => plant_date + crop.growth);
 
     const plant_events = plant_dates.map(
-      date => new CropEvent(Object.assign({}, seed, { date }))
+      date => new CropEvent({ ...seed, date })
     );
     const harvest_events = harvest_dates.map(date => seed.harvest(date));
     return [...plant_events, ...harvest_events];
   };
 
   createCropEvent = event => {
-    console.log(`seed = ${event.id}`);
     this.createEvents(this.extrapolateCropEvents(event));
   };
 
   updateCropEvent = (old_event, new_event) => {
-    console.log(this.state.events[1]);
-    console.log(`old = ${old_event.id}`);
-    console.log(`new = ${new_event.id}`);
-
-    this.removeEvents(this.extrapolateCropEvents(old_event));
-    this.createEvents(this.extrapolateCropEvents(new_event));
+    this.deleteCropEvent(old_event);
+    this.createCropEvent(new_event);
   };
 
-  deleteEvent = event => {};
+  deleteCropEvent = event => {
+    this.removeEvents(this.extrapolateCropEvents(event));
+  };
 
   render = () =>
     this.props.children(
       this.state.events,
       this.createCropEvent,
       this.updateCropEvent,
-      this.removeCropEvent
+      this.deleteCropEvent
     );
 
   createEvents = new_events => {
     this.setState(
       produce(draft => {
         new_events.forEach(event => {
-          const index = draft.events[event.date].findIndex(
+          const events_by_date = draft.events[event.date];
+
+          const index = events_by_date.findIndex(
             old_event => old_event.id === event.id
           );
+
           if (index < 0) {
-            draft.events[event.date].push(event);
+            events_by_date.push(event);
           } else {
             //Immer does not support changing class properties
             const new_event = new CropEvent({
               ...event,
-              quantity:
-                draft.events[event.date][index].quantity + event.quantity
+              crop: {
+                ...event.crop
+              },
+              fertilizer: {
+                ...event.fertilizer
+              },
+              quantity: events_by_date[index].quantity + event.quantity
             });
-            draft.events[event.date][index] = new_event;
+            events_by_date[index] = new_event;
           }
+          events_by_date.sort(({ id: a }, { id: b }) => a.localeCompare(b));
         });
-      }),
-      () => {
-        console.log(this.state.events[1]);
-      }
+      })
     );
   };
 
@@ -80,7 +83,6 @@ export default class EventProvider extends React.Component {
     this.setState(
       produce(draft => {
         remove_events.forEach(event => {
-          draft.events[event.date].forEach(old_event => console.log(old_event));
           const index = draft.events[event.date].findIndex(
             old_event => old_event.id === event.id
           );

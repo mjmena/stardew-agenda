@@ -27,7 +27,7 @@ export default class Calendar extends React.Component {
   ];
 
   state = {
-    date: 1,
+    date: 0,
     visible: true
   };
 
@@ -38,7 +38,7 @@ export default class Calendar extends React.Component {
   render() {
     return (
       <EventProvider>
-        {(events, createCropEvent, updateCropEvent, removeCropEvent) => {
+        {(events, createCropEvent, updateCropEvent, deleteCropEvent) => {
           return (
             <React.Fragment>
               <EventEditor
@@ -48,6 +48,7 @@ export default class Calendar extends React.Component {
                 events={events[this.state.date]}
                 createCropEvent={createCropEvent}
                 updateCropEvent={updateCropEvent}
+                deleteCropEvent={deleteCropEvent}
               />
 
               <CalendarLayout>

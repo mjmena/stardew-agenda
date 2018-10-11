@@ -5,12 +5,13 @@ import UpdateCropEventForm from "./event/UpdateCropEventForm";
 export default class EventEditor extends React.Component {
   render() {
     const editable_events = this.props.events
-      .filter(event => event.type === "plant" || event.type === "replant")
+      .filter(event => event.type === "plant")
       .map(event => (
         <UpdateCropEventForm
           key={event.id + event.quantity}
           event={event}
           updateCropEvent={this.props.updateCropEvent}
+          deleteCropEvent={this.props.deleteCropEvent}
         />
       ));
 
