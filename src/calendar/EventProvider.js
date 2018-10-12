@@ -11,19 +11,15 @@ export default class EventProvider extends React.Component {
   };
 
   extrapolateCropEvents = seed => {
-    const { date, crop } = seed;
-    const plant_dates = !seed.shouldReplant()
-      ? [date]
-      : range(date, crop.end - crop.growth + 1, crop.growth);
-    const harvest_dates = crop.regrowth
-      ? range(date + crop.growth, crop.end + 1, crop.regrowth)
-      : plant_dates.map(plant_date => plant_date + crop.growth);
-
-    const plant_events = plant_dates.map(
-      date => new CropEvent({ ...seed, date })
-    );
-    const harvest_events = harvest_dates.map(date => seed.harvest(date));
-    return [...plant_events, ...harvest_events];
+    if (seed.shouldReplant()) {
+      const plant_events = [seed, ...seed.getReplantEvents()];
+      const harvest_events = plant_events.map(
+        plant_event => plant_event.getHarvestEvents()[0]
+      );
+      return [...plant_events, ...harvest_events];
+    } else {
+      return [seed, ...seed.getHarvestEvents()];
+    }
   };
 
   createCropEvent = event => {
