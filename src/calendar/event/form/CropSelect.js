@@ -6,6 +6,7 @@ export default class CropSelect extends React.Component {
   render() {
     return (
       <Select
+        menuPlacement="top"
         name="crop"
         value={this.props.crop}
         options={this.props.crops}

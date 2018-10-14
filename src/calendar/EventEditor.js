@@ -1,4 +1,5 @@
 import React from "react";
+import styled from "styled-components";
 import CreateCropEventForm from "./event/CreateCropEventForm";
 import UpdateCropEventForm from "./event/UpdateCropEventForm";
 
@@ -16,14 +17,20 @@ export default class EventEditor extends React.Component {
       ));
 
     return (
-      <>
+      <StyledEditor>
         <CreateCropEventForm
           crops={this.props.crops}
           date={this.props.date}
           createCropEvent={this.props.createCropEvent}
         />
         {editable_events}
-      </>
+      </StyledEditor>
     );
   }
 }
+
+const StyledEditor = styled.div`
+  display: flex;
+  flex-flow: column nowrap;
+  width: 100%;
+`;

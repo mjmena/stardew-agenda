@@ -3,6 +3,7 @@ import styled from "styled-components";
 import range from "lodash/range";
 import EventEditor from "./calendar/EventEditor";
 import EventProvider from "./calendar/EventProvider";
+import Drawer from "./components/Drawer";
 import Season from "./calendar/Season";
 import Day from "./calendar/Day";
 
@@ -41,15 +42,17 @@ export default class Calendar extends React.Component {
         {(events, createCropEvent, updateCropEvent, deleteCropEvent) => {
           return (
             <React.Fragment>
-              <EventEditor
-                key={this.state.date}
-                date={this.state.date}
-                crops={Calendar.crops[this.state.date]}
-                events={events[this.state.date]}
-                createCropEvent={createCropEvent}
-                updateCropEvent={updateCropEvent}
-                deleteCropEvent={deleteCropEvent}
-              />
+              <Drawer>
+                <EventEditor
+                  key={this.state.date}
+                  date={this.state.date}
+                  crops={Calendar.crops[this.state.date]}
+                  events={events[this.state.date]}
+                  createCropEvent={createCropEvent}
+                  updateCropEvent={updateCropEvent}
+                  deleteCropEvent={deleteCropEvent}
+                />
+              </Drawer>
 
               <CalendarLayout>
                 {Calendar.seasons.map(season => (

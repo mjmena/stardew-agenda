@@ -56,15 +56,20 @@ export default class CreateCropEventForm extends React.Component {
 
   render() {
     const details_fragment = this.state.crop ? (
-      <CropEventDetailsFragment
-        crop={this.state.crop}
-        quantity={this.state.quantity}
-        price={this.state.price}
-        replant={this.state.replant}
-        fertilizer={this.state.fertilizer}
-        setDetails={this.setDetails}
-        wrapper={StyledSecondaryInput}
-      />
+      <>
+        <CropEventDetailsFragment
+          crop={this.state.crop}
+          quantity={this.state.quantity}
+          price={this.state.price}
+          replant={this.state.replant}
+          fertilizer={this.state.fertilizer}
+          setDetails={this.setDetails}
+          wrapper={StyledSecondaryInput}
+        />
+        <StyledSecondaryInput>
+          <input type="submit" value="submit" />
+        </StyledSecondaryInput>
+      </>
     ) : null;
 
     return (
@@ -77,9 +82,6 @@ export default class CreateCropEventForm extends React.Component {
           />
         </StyledPrimaryInput>
         {details_fragment}
-        <StyledSecondaryInput>
-          <input type="submit" value="submit" />
-        </StyledSecondaryInput>
       </StyledForm>
     );
   }
@@ -88,6 +90,7 @@ export default class CreateCropEventForm extends React.Component {
 const StyledForm = styled.form`
   display: flex
   flex-flow: row nowrap
+  flex:1
 `;
 
 const StyledPrimaryInput = styled.div`
