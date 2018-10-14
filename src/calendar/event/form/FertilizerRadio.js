@@ -1,5 +1,7 @@
 import React from "react";
+import styled from "styled-components";
 import fertilizers from "../../../data/fertilizers";
+
 export default class FertilizerRadio extends React.Component {
   handleChange = event => {
     const fertilizer = fertilizers[event.target.value];
@@ -7,18 +9,41 @@ export default class FertilizerRadio extends React.Component {
   };
 
   render() {
-    return fertilizers.map((fertilizer, index) => (
-      <React.Fragment key={fertilizer.id}>
+    const [none, bf, qf, sg, dsg] = fertilizers.map((fertilizer, index) => (
+      <>
         <input
           type="radio"
           id={fertilizer.id}
           name={fertilizer.id}
           value={index}
-          checked={this.props.fertilizer.id === fertilizer.id}
+          checked={fertilizer.id === this.props.fertilizer.id}
           onChange={this.handleChange}
         />
         <label htmlFor={fertilizer.id}>{fertilizer.name}</label>
-      </React.Fragment>
+      </>
     ));
+    return (
+      <StyledRadioGroup>
+        <StyledRadioSubgroup>{none}</StyledRadioSubgroup>
+        <StyledRadioSubgroup>
+          {bf}
+          {qf}
+        </StyledRadioSubgroup>
+        <StyledRadioSubgroup>
+          {sg}
+          {dsg}
+        </StyledRadioSubgroup>
+      </StyledRadioGroup>
+    );
   }
 }
+
+const StyledRadioGroup = styled.div`
+  display: flex
+  flex-flow: row nowrap
+`;
+
+const StyledRadioSubgroup = styled.div`
+  display:flex
+  flex-flow: column nowrap
+`;

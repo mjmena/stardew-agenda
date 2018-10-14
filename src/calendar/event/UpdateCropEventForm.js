@@ -39,9 +39,9 @@ export default class UpdateCropEventForm extends React.Component {
   render() {
     return (
       <>
-        <CropImage crop={this.props.event.crop} />
-
         <StyledForm onSubmit={this.handleSubmit}>
+          <CropImage crop={this.props.event.crop} />
+          {this.props.event.crop.name}
           <CropEventDetailsFragment
             crop={this.props.event.crop}
             quantity={this.state.quantity}
@@ -49,13 +49,9 @@ export default class UpdateCropEventForm extends React.Component {
             replant={this.state.replant}
             fertilizer={this.state.fertilizer}
             setDetails={this.setDetails}
-            wrapper={StyledSecondaryInput}
           />
-
-          <StyledSecondaryInput>
-            <button>Submit</button>
-            <button onClick={this.handleDeleteClick}>Remove</button>
-          </StyledSecondaryInput>
+          <button>Submit</button>
+          <button onClick={this.handleDeleteClick}>Remove</button>
         </StyledForm>
       </>
     );
@@ -64,7 +60,7 @@ export default class UpdateCropEventForm extends React.Component {
 
 const StyledForm = styled.form`
   display: flex
-  flex-flow: row nowrap
+  flex-flow: row wrap
 `;
 
 const StyledSecondaryInput = styled.div`

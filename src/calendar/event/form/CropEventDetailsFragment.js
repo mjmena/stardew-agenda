@@ -2,7 +2,7 @@ import React from "react";
 import debounce from "lodash/debounce";
 import NumberInput from "./NumberInput";
 import FertilizerRadio from "./FertilizerRadio";
-
+import styled from "styled-components";
 export default class CropEventDetailsFragment extends React.Component {
   updatePrice = price => {
     if (price) {
@@ -39,38 +39,32 @@ export default class CropEventDetailsFragment extends React.Component {
   };
 
   render() {
-    const Wrapper = this.props.wrapper;
     return (
       <>
-        <Wrapper>
+        <StyledInput>
           <NumberInput
             value={this.props.quantity}
             handleChange={this.updateQuantity}
           />
-        </Wrapper>
-        <Wrapper>
+        </StyledInput>
+        <StyledInput>
           <NumberInput
             value={this.props.price}
             handleChange={this.updatePrice}
           />
-        </Wrapper>
-        <Wrapper>
-          {!this.props.crop.regrowth && (
-            <input
-              type="checkbox"
-              name="replant"
-              checked={this.props.replant}
-              onChange={this.toggleReplant}
-            />
-          )}
-        </Wrapper>
-        <Wrapper>
+        </StyledInput>
+        <StyledInput flex={2}>
           <FertilizerRadio
             fertilizer={this.props.fertilizer}
             updateFertilizer={this.updateFertilizer}
           />
-        </Wrapper>
+        </StyledInput>
       </>
     );
   }
 }
+
+const StyledInput = styled.div`
+    flex: ${props => (props.flex ? props.flex : 1)}
+    padding: 0px 5px
+  `;
