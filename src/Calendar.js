@@ -9,12 +9,6 @@ import Day from "./calendar/Day";
 
 import crops from "./data/crops";
 
-const CalendarLayout = styled.div`
-  display: flex
-  flex-wrap: wrap
-  height: 100%
-`;
-
 export default class Calendar extends React.Component {
   static crops = range(128).map(date =>
     crops.filter(crop => date >= crop.start && date + crop.growth <= crop.end)
@@ -34,15 +28,26 @@ export default class Calendar extends React.Component {
 
   handleSelectDate = date => {
     this.setState({ date });
+    this.handleOpen();
   };
 
+  handleOpen = () => {
+    this.setState({ visible: true });
+  };
+  handleClose = () => {
+    this.setState({ visible: false });
+  };
   render() {
     return (
       <EventProvider>
         {(events, createCropEvent, updateCropEvent, deleteCropEvent) => {
           return (
             <React.Fragment>
-              <Drawer>
+              <Drawer
+                open={this.state.visible}
+                onOpen={this.handleOpen}
+                onClose={this.handleClose}
+              >
                 <EventEditor
                   key={this.state.date}
                   date={this.state.date}
@@ -80,3 +85,9 @@ export default class Calendar extends React.Component {
     );
   }
 }
+
+const CalendarLayout = styled.div`
+  display: flex
+  flex-wrap: wrap
+  height: 100%
+`;

@@ -34,15 +34,16 @@ export default class Drawer extends React.Component {
     document.body.appendChild(this.container);
   }
 
-  handleToggleVisibility = event => {
-    this.setState(state => ({ visible: !state.visible }));
+  handleToggle = () => {
+    if (this.props.open) this.props.onClose();
+    else this.props.onOpen();
   };
 
   render() {
     return ReactDOM.createPortal(
       <StyledDrawer>
-        <StyledHandle size={50} onClick={this.handleToggleVisibility} />
-        <StyledContent visible={this.state.visible}>
+        <StyledHandle size={50} onClick={this.handleToggle} />
+        <StyledContent visible={this.props.open}>
           {this.props.children}
         </StyledContent>
       </StyledDrawer>,
