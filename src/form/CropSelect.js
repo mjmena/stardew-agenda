@@ -1,7 +1,7 @@
 import React from "react";
 import Select, { components } from "react-select";
 import styled from "styled-components";
-import CropImage from "../../../components/CropImage";
+import CropImage from "../components/CropImage";
 export default class CropSelect extends React.Component {
   render() {
     return (

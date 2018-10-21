@@ -1,4 +1,3 @@
-import produce from "immer";
 import CropPlan from "./CropPlan.js";
 
 const createCropPlanAction = plan => ({ type: "create", plan });
@@ -16,11 +15,15 @@ function cropPlanReducer(state, action) {
 }
 
 function createPlan(created_plan, state) {
-  const index = state.findIndex(plan => CropPlan.equal(plan, created_plan));
+  const index = state.findIndex(
+    plan => CropPlan.compare(plan, created_plan) === 0
+  );
 
   if (index >= 0) {
     const same_plan = state[index];
-    const plans = state.filter(plan => !CropPlan.equal(plan, created_plan));
+    const plans = state.filter(
+      plan => CropPlan.compare(plan, created_plan) !== 0
+    );
     const merged_crop = CropPlan.merge(same_plan, created_plan);
     const new_state = [merged_crop, ...plans];
     new_state.sort(CropPlan.compare);

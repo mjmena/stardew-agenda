@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import fertilizers from "../../../data/fertilizers";
+import fertilizers from "../data/fertilizers";
 
 export default class FertilizerRadio extends React.Component {
   handleChange = event => {

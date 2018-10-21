@@ -1,7 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import memoize from "memoize-one";
-import EventDisplay from "./event/EventDisplay";
+import EventDisplay from "./EventDisplay";
 let StyledDay = styled.div`
   width: 100%;
   height: 100%;
@@ -27,36 +26,21 @@ const StyledEvent = styled.div`
 `;
 
 export default class Day extends React.PureComponent {
-  getEditableEvents = memoize(events =>
-    events.filter(event => event.type === "plant" || event.type === "replant")
-  );
-
   handleClick = event => {
     this.props.selectDate(this.props.day_in_year);
   };
 
   render() {
-    const [special_event, ...crop_events] = this.props.events;
-
-    const title =
-      special_event &&
-      (special_event.type === "festival" ||
-        special_event.type === "birthday") ? (
-        <EventDisplay event={special_event} />
-      ) : null;
-
-    const events = (title ? crop_events : this.props.events).map(event => (
-      <StyledEvent key={event.id}>
-        <EventDisplay event={event} />
+    const actions = this.props.actions.map(action => (
+      <StyledEvent key={action.id}>
+        <EventDisplay event={action} />
       </StyledEvent>
     ));
 
     return (
       <StyledDay selected={this.props.selected} onClick={this.handleClick}>
-        <StyledDayTitle>
-          {this.props.day_in_month} {title}
-        </StyledDayTitle>
-        <StyledEvents>{events}</StyledEvents>
+        <StyledDayTitle>{this.props.day_in_month}</StyledDayTitle>
+        <StyledEvents>{actions}</StyledEvents>
       </StyledDay>
     );
   }

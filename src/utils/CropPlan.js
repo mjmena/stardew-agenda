@@ -1,5 +1,3 @@
-import range from "lodash/range";
-
 export default class CropPlan {
   constructor({
     date,
@@ -15,9 +13,10 @@ export default class CropPlan {
       fertilizer,
       quantity,
       start_date: date !== undefined ? date : start_date,
-      end_date: replant
-        ? crop.end
-        : end_date || date + CropPlan.getCropGrowth(crop, fertilizer)
+      end_date:
+        replant || crop.regrowth
+          ? crop.end
+          : end_date || date + CropPlan.getCropGrowth(crop, fertilizer)
     });
   }
 
@@ -27,7 +26,9 @@ export default class CropPlan {
 
   static merge(planA, planB) {
     if (CropPlan.compare(planA, planB))
-      throw "Plans must have equal dates, crop, and fertilizer to merge";
+      throw new Error(
+        "Plans must have equal dates, crop, and fertilizer to merge"
+      );
     const { quantity, ...same } = planA;
     return new CropPlan({ quantity: quantity + planB.quantity, ...same });
   }
@@ -57,6 +58,16 @@ export default class CropPlan {
     return isSame && planA.quantity - planB.quantity === 0;
   }
 
+  shouldReplant = () => {
+    return this.date + this.crop.growth === this.end_date;
+  };
+
+  get id() {
+    return `${this.crop.id}-${this.fertilizer.id}-${this.quantity}-(${
+      this.start_date
+    }-${this.end_date})`;
+  }
+
   isPlantDate = date => {
     const growth = CropPlan.getCropGrowth(this.crop, this.fertilizer);
     const inPlan = this.start_date <= date && date + growth <= this.end_date;
@@ -77,13 +88,14 @@ export default class CropPlan {
       inPlan &&
       (this.crop.regrowth
         ? date === this.start_date + growth ||
-          (date - this.start_date + growth) % this.crop.regrowth === 0
-        : (date - this.start_date + growth) % growth === 0)
+          (date - this.start_date - growth) % this.crop.regrowth === 0
+        : (date - this.start_date - growth) % growth === 0)
     );
   };
 
   getAction = type => ({
     id: `${type}-${this.crop.id}`,
+    type: type,
     crop: this.crop,
     quantity: this.quantity
   });
@@ -91,11 +103,10 @@ export default class CropPlan {
   getCropActionsOnDate = date => {
     const isPlant = this.isPlantDate(date);
     const isHarvest = this.isHarvestDate(date);
-    if (isPlant && isHarvest) {
+    if (isPlant && isHarvest)
       return [this.getAction("plant"), this.getAction("harvest")];
-    }
-
-    if (isPlant) return [this.getAction("plant")];
-    if (isHarvest) return [this.getAction("harvest")];
+    else if (isPlant) return [this.getAction("plant")];
+    else if (isHarvest) return [this.getAction("harvest")];
+    else return [];
   };
 }

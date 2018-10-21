@@ -21,32 +21,28 @@ const jazz_plan = new CropPlan({
   date: 0,
   crop: jazz,
   fertilizer: none,
-  quantity: 1,
-  replant: false
+  quantity: 1
 });
 
 const jazz_plan_different_start_date = new CropPlan({
   date: 1,
   crop: jazz,
   fertilizer: none,
-  quantity: 1,
-  replant: false
+  quantity: 1
 });
 
 const not_jazz_plan = new CropPlan({
   date: 0,
   crop: cauliflower,
   fertilizer: none,
-  quantity: 1,
-  replant: false
+  quantity: 1
 });
 
 const jazz_plan_different_fertilizer = new CropPlan({
   date: 0,
   crop: jazz,
   fertilizer: fertilizers[1],
-  quantity: 1,
-  replant: false
+  quantity: 1
 });
 
 const jazz_plan_different_end_date = new CropPlan({
@@ -114,10 +110,24 @@ describe("Tests for simple CropPlan", () => {
     expect(jazz_plan.isHarvestDate(0)).toBe(false);
   });
   test("get plant action", () => {
-    expect(jazz_plan.getCropActionsOnDate(0)).toMatchSnapshot();
+    expect(jazz_plan.getCropActionsOnDate(0)).toEqual([
+      {
+        id: "plant-blue_jazz",
+        type: "plant",
+        crop: jazz,
+        quantity: 1
+      }
+    ]);
   });
   test("get harvest action", () => {
-    expect(jazz_plan.getCropActionsOnDate(jazz.growth)).toMatchSnapshot();
+    expect(jazz_plan.getCropActionsOnDate(jazz.growth)).toEqual([
+      {
+        id: "harvest-blue_jazz",
+        type: "harvest",
+        crop: jazz,
+        quantity: 1
+      }
+    ]);
   });
   test("get actions for month", () => {
     const actions = range(0, 28).map(jazz_plan.getCropActionsOnDate);
@@ -216,6 +226,12 @@ describe("Tests for CropPlan with regrowth", () => {
     expect(fruit_plan.isHarvestDate(fruit_start_date + fruit.growth)).toBe(
       true
     );
+  });
+
+  test("Is another harvest date?", () => {
+    expect(
+      fruit_plan.isHarvestDate(fruit_start_date + fruit.growth + fruit.regrowth)
+    ).toBe(true);
   });
 
   test("Is not a harvest date?", () => {

@@ -1,6 +1,6 @@
 import React from "react";
-import CropImage from "../../components/CropImage";
-import EventImage from "../../components/EventImage";
+import CropImage from "./components/CropImage";
+import EventImage from "./EventImage";
 
 const EventDisplay = ({ event }) => {
   if (
@@ -10,10 +10,7 @@ const EventDisplay = ({ event }) => {
   )
     return (
       <React.Fragment>
-        <CropImage
-          crop={event.crop}
-          seed={event.type === "plant" || event.type === "replant"}
-        />
+        <CropImage crop={event.crop} seed={event.type === "plant"} />
         <span>x{event.quantity}</span>
       </React.Fragment>
     );
