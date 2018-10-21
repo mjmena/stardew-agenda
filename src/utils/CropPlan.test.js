@@ -6,12 +6,89 @@ import fertilizers from "../data/fertilizers";
 const jazz = crops[4];
 
 const none = fertilizers[0];
+
+const cauliflower = crops[7];
+const cauliflower_start_date = 1;
+const cauliflower_plan = new CropPlan({
+  date: cauliflower_start_date,
+  crop: cauliflower,
+  fertilizer: none,
+  quantity: 1,
+  replant: true
+});
+
 const jazz_plan = new CropPlan({
   date: 0,
   crop: jazz,
   fertilizer: none,
   quantity: 1,
   replant: false
+});
+
+const jazz_plan_different_start_date = new CropPlan({
+  date: 1,
+  crop: jazz,
+  fertilizer: none,
+  quantity: 1,
+  replant: false
+});
+
+const not_jazz_plan = new CropPlan({
+  date: 0,
+  crop: cauliflower,
+  fertilizer: none,
+  quantity: 1,
+  replant: false
+});
+
+const jazz_plan_different_fertilizer = new CropPlan({
+  date: 0,
+  crop: jazz,
+  fertilizer: fertilizers[1],
+  quantity: 1,
+  replant: false
+});
+
+const jazz_plan_different_end_date = new CropPlan({
+  date: 0,
+  crop: jazz,
+  fertilizer: none,
+  quantity: 1,
+  replant: true
+});
+const jazz_plan_merged = CropPlan.merge(jazz_plan, jazz_plan);
+
+describe("Tests static methods of CropPlan", () => {
+  test("Compare a plan to itself", () => {
+    expect(CropPlan.compare(jazz_plan, jazz_plan)).toBe(0);
+  });
+
+  test("Compare a plan to a similar one (merged)", () => {
+    expect(CropPlan.compare(jazz_plan, jazz_plan_merged)).toBe(0);
+  });
+
+  test("Compare a plan to a similar one (different start_date only)", () => {
+    expect(CropPlan.compare(jazz_plan, jazz_plan_different_start_date)).toBe(
+      -1
+    );
+  });
+
+  test("Compare a plan to a similar one (different crop only)", () => {
+    expect(CropPlan.compare(jazz_plan, not_jazz_plan)).toBe(-1);
+  });
+
+  test("Compare a plan to a similar one (different fertilizer only)", () => {
+    expect(CropPlan.compare(jazz_plan, jazz_plan_different_fertilizer)).toBe(1);
+  });
+
+  test("Compare a plan to a similar one (different end_date only)", () => {
+    expect(CropPlan.compare(jazz_plan, jazz_plan_different_end_date)).toBe(-1);
+  });
+
+  test("Check equality of plans", () => {
+    expect(CropPlan.equal(jazz_plan, jazz_plan_merged)).toBe(false);
+    expect(CropPlan.equal(jazz_plan, jazz_plan)).toBe(true);
+  });
 });
 
 describe("Tests for simple CropPlan", () => {
@@ -46,16 +123,6 @@ describe("Tests for simple CropPlan", () => {
     const actions = range(0, 28).map(jazz_plan.getCropActionsOnDate);
     expect(actions).toMatchSnapshot();
   });
-});
-
-const cauliflower = crops[7];
-const cauliflower_start_date = 1;
-const cauliflower_plan = new CropPlan({
-  date: cauliflower_start_date,
-  crop: cauliflower,
-  fertilizer: none,
-  quantity: 1,
-  replant: true
 });
 
 describe("Tests for CropPlan with replant", () => {

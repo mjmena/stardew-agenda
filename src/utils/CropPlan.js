@@ -1,15 +1,23 @@
 import range from "lodash/range";
 
 export default class CropPlan {
-  constructor({ date, crop, fertilizer, quantity, replant }) {
+  constructor({
+    date,
+    crop,
+    fertilizer,
+    quantity,
+    replant,
+    start_date,
+    end_date
+  }) {
     Object.assign(this, {
       crop,
       fertilizer,
       quantity,
-      start_date: date,
+      start_date: date !== undefined ? date : start_date,
       end_date: replant
         ? crop.end
-        : date + CropPlan.getCropGrowth(crop, fertilizer)
+        : end_date || date + CropPlan.getCropGrowth(crop, fertilizer)
     });
   }
 
@@ -17,8 +25,36 @@ export default class CropPlan {
     return crop.growth;
   }
 
-  get id() {
-    return `${this.crop.id}-${this.fertilizer.id}`;
+  static merge(planA, planB) {
+    if (CropPlan.compare(planA, planB))
+      throw "Plans must have equal dates, crop, and fertilizer to merge";
+    const { quantity, ...same } = planA;
+    return new CropPlan({ quantity: quantity + planB.quantity, ...same });
+  }
+
+  // Compares data that cannot be merged - i.e. dates, crop, and fertilizer
+  static compare(planA, planB) {
+    const start_date_compare = planA.start_date - planB.start_date;
+    const crop_compare = planA.crop.id.localeCompare(planB.crop.id);
+    const fertilizer_compare = planA.fertilizer.id.localeCompare(
+      planB.fertilizer.id
+    );
+    const end_date_compare = planA.end_date - planB.end_date;
+
+    if (start_date_compare > 0) return 1;
+    else if (start_date_compare < 0) return -1;
+    else if (crop_compare > 0) return 1;
+    else if (crop_compare < 0) return -1;
+    else if (fertilizer_compare > 0) return 1;
+    else if (fertilizer_compare < 0) return -1;
+    else if (end_date_compare > 0) return 1;
+    else if (end_date_compare < 0) return -1;
+    else return 0;
+  }
+
+  static equal(planA, planB) {
+    const isSame = CropPlan.compare(planA, planB) === 0;
+    return isSame && planA.quantity - planB.quantity === 0;
   }
 
   isPlantDate = date => {
@@ -47,7 +83,7 @@ export default class CropPlan {
   };
 
   getAction = type => ({
-    type,
+    id: `${type}-${this.crop.id}`,
     crop: this.crop,
     quantity: this.quantity
   });
