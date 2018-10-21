@@ -40,8 +40,10 @@ export default class UpdateCropPlanForm extends React.Component {
     return (
       <>
         <StyledForm onSubmit={this.handleSubmit}>
-          <CropImage crop={this.props.plan.crop} />
-          {this.props.plan.crop.name}
+          <StyledFlex flex={2}>
+            <CropImage crop={this.props.plan.crop} />
+            {this.props.plan.crop.name}
+          </StyledFlex>
           <CropPlanDetailsFragment
             crop={this.props.plan.crop}
             quantity={this.state.quantity}
@@ -50,8 +52,10 @@ export default class UpdateCropPlanForm extends React.Component {
             fertilizer={this.state.fertilizer}
             setDetails={this.setDetails}
           />
-          <button>Submit</button>
-          <button onClick={this.handleDeleteClick}>Remove</button>
+          <StyledFlex>
+            <button>Submit</button>
+            <button onClick={this.handleDeleteClick}>Remove</button>
+          </StyledFlex>
         </StyledForm>
       </>
     );
@@ -61,4 +65,8 @@ export default class UpdateCropPlanForm extends React.Component {
 const StyledForm = styled.form`
   display: flex
   flex-flow: row wrap
+`;
+
+const StyledFlex = styled.div`
+  flex: ${props => props.flex || 1};
 `;

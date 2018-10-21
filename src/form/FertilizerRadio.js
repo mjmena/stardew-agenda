@@ -24,15 +24,11 @@ export default class FertilizerRadio extends React.Component {
     ));
     return (
       <StyledRadioGroup>
-        <StyledRadioSubgroup>{none}</StyledRadioSubgroup>
-        <StyledRadioSubgroup>
-          {bf}
-          {qf}
-        </StyledRadioSubgroup>
-        <StyledRadioSubgroup>
-          {sg}
-          {dsg}
-        </StyledRadioSubgroup>
+        {none}
+        {bf}
+        {qf}
+        {sg}
+        {dsg}
       </StyledRadioGroup>
     );
   }
@@ -41,9 +37,4 @@ export default class FertilizerRadio extends React.Component {
 const StyledRadioGroup = styled.div`
   display: flex
   flex-flow: row nowrap
-`;
-
-const StyledRadioSubgroup = styled.div`
-  display:flex
-  flex-flow: column nowrap
 `;

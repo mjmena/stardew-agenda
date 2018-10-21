@@ -64,23 +64,23 @@ export default class CreateCropPlanForm extends React.Component {
           replant={this.state.replant}
           fertilizer={this.state.fertilizer}
           setDetails={this.setDetails}
-          wrapper={StyledSecondaryInput}
+          wrapper={StyledFlex}
         />
-        <StyledSecondaryInput>
+        <StyledFlex>
           <input type="submit" value="submit" />
-        </StyledSecondaryInput>
+        </StyledFlex>
       </>
     ) : null;
 
     return (
       <StyledForm onSubmit={this.handleSubmit}>
-        <StyledPrimaryInput>
+        <StyledFlex flex={2}>
           <CropSelect
             crop={this.state.crop}
             crops={this.props.crops}
             onChange={this.handleCropChange}
           />
-        </StyledPrimaryInput>
+        </StyledFlex>
         {details_fragment}
       </StyledForm>
     );
@@ -93,10 +93,6 @@ const StyledForm = styled.form`
   flex:1
 `;
 
-const StyledPrimaryInput = styled.div`
-  flex: 2;
-`;
-
-const StyledSecondaryInput = styled.div`
-  flex: 1;
+const StyledFlex = styled.div`
+  flex: ${props => props.flex || 1};
 `;

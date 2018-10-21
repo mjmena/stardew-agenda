@@ -466,8 +466,8 @@ module.exports = {
     {
       buy: 150,
       growth_rate: 0.25,
-      id: "delux_speed_gro",
-      name: "Delux Speed-Gro"
+      id: "deluxe_speed_gro",
+      name: "Deluxe Speed-Gro"
     }
   ],
   events: {

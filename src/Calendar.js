@@ -4,7 +4,7 @@ import range from "lodash/range";
 import PlanEditor from "./PlanEditor";
 import CropPlanProvider from "./CropPlanProvider";
 import Drawer from "./components/Drawer";
-import Season from "./calendar/Season";
+import Season from "./Season";
 import Day from "./Day";
 
 import crops from "./data/crops";

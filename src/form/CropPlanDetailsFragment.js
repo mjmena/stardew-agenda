@@ -59,6 +59,16 @@ export default class CropEventDetailsFragment extends React.Component {
             updateFertilizer={this.updateFertilizer}
           />
         </StyledInput>
+        <StyledInput>
+          {!this.props.crop.regrowth && (
+            <input
+              type="checkbox"
+              name="replant"
+              checked={this.props.replant}
+              onChange={this.toggleReplant}
+            />
+          )}
+        </StyledInput>
       </>
     );
   }

@@ -59,7 +59,7 @@ export default class CropPlan {
   }
 
   shouldReplant = () => {
-    return this.date + this.crop.growth === this.end_date;
+    return this.start_date + this.crop.growth !== this.end_date;
   };
 
   get id() {
