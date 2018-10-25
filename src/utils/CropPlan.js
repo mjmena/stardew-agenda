@@ -1,22 +1,16 @@
 export default class CropPlan {
-  constructor({
-    date,
-    crop,
-    fertilizer,
-    quantity,
-    replant,
-    start_date,
-    end_date
-  }) {
+  constructor({ crop, fertilizer, quantity, replant, start_date, end_date }) {
     Object.assign(this, {
       crop,
       fertilizer,
       quantity,
-      start_date: date !== undefined ? date : start_date,
+      start_date: start_date,
       end_date:
         replant || crop.regrowth
           ? crop.end
-          : end_date || date + CropPlan.getCropGrowth(crop, fertilizer)
+          : replant === false
+            ? start_date + CropPlan.getCropGrowth(crop, fertilizer)
+            : end_date
     });
   }
 
@@ -108,5 +102,24 @@ export default class CropPlan {
     else if (isPlant) return [this.getAction("plant")];
     else if (isHarvest) return [this.getAction("harvest")];
     else return [];
+  };
+
+  split = (date, { fertilizer, quantity, replant }) => {
+    const before = new CropPlan({ ...this, end_date: date });
+    const after = new CropPlan({
+      start_date: date,
+      fertilizer: fertilizer || this.fertilizer,
+      crop: this.crop,
+      quantity: quantity || this.quantity,
+      replant: replant === undefined ? this.shouldReplant() : replant
+    });
+    return [before, after];
+  };
+
+  debug = () => {
+    const stringy = { ...this };
+    stringy.fertilizer = this.fertilizer.id;
+    stringy.crop = this.crop.id;
+    console.log(JSON.stringify(stringy, null, 2));
   };
 }

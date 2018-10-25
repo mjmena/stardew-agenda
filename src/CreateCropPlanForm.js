@@ -41,7 +41,7 @@ export default class CreateCropPlanForm extends React.Component {
     event.preventDefault();
     const { crop, quantity, replant, fertilizer } = this.state;
     const crop_plan = new CropPlan({
-      date: this.props.date,
+      start_date: this.props.date,
       crop,
       quantity,
       replant,

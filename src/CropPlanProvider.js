@@ -4,10 +4,10 @@ import {
   deleteCropPlanAction,
   cropPlanReducer
 } from "./utils/CropPlanReducer";
-
+import { replant_plan, regrowth_plan } from "./utils/CropPlanSamples";
 export default class PlanProvider extends React.Component {
   state = {
-    plans: []
+    plans: [replant_plan, regrowth_plan]
   };
 
   createCropPlan = plan => {

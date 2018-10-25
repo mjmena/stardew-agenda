@@ -22,7 +22,7 @@ export default class UpdateCropPlanForm extends React.Component {
     this.props.updateCropPlan(
       this.props.plan,
       new CropPlan({
-        date: this.props.plan.start_date,
+        start_date: this.props.plan.start_date,
         crop: this.props.plan.crop,
         quantity,
         replant,
