@@ -16,8 +16,8 @@ export default function Calendar() {
   const [day, setDay] = useState(0);
   const [plans, createPlan, updatePlan, deletePlan] = useCropPlanReducer([]);
   const [visible, setVisible] = useState(0);
-  const open = useCallback(() => setVisible(true));
-  const close = useCallback(() => setVisible(false));
+  const open = useCallback(() => setVisible(true), []);
+  const close = useCallback(() => setVisible(false), []);
 
   return (
     <>

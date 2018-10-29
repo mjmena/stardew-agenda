@@ -48,6 +48,7 @@ export default class CreateCropPlanForm extends React.Component {
       fertilizer
     });
     this.props.createCropPlan(crop_plan);
+    this.setState(this.reset_state);
   };
 
   setDetails = details => {
