@@ -2,6 +2,7 @@ import React, { useState, useCallback } from "react";
 import Season from "./Season";
 import PlanEditor from "./PlanEditor";
 import Drawer from "./components/Drawer";
+import NumberInput from "./form/NumberInput";
 import useCropPlanReducer from "./utils/useCropPlanReducer";
 
 const seasons = [
@@ -21,7 +22,12 @@ export default function Calendar() {
 
   return (
     <>
-      <NumberInput value={season} onChange={setSeason} />
+      <NumberInput
+        value={season}
+        onChange={setSeason}
+        isNullable={false}
+        max={3}
+      />
 
       <Season
         season={seasons[season]}
@@ -39,28 +45,5 @@ export default function Calendar() {
         />
       </Drawer>
     </>
-  );
-}
-
-// A Input for positive numbers that can be null
-// Useful for inputs with a placeholder
-function NumberInput({ value, onChange, ...attrs }) {
-  function handleChange(e) {
-    const number = Number.parseInt(e.target.value.replace(/\D/, ""), 10);
-
-    if (Number.isNaN(number)) {
-      onChange(0);
-    } else {
-      onChange(number);
-    }
-  }
-
-  return (
-    <input
-      type="text"
-      value={Number.isInteger(value) ? value : ""}
-      onChange={handleChange}
-      {...attrs}
-    />
   );
 }
