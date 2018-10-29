@@ -1,12 +1,12 @@
+import { useReducer } from "react";
 import CropPlan from "./CropPlan.js";
-
-const createCropPlanAction = plan => ({ type: "create", plan });
-const deleteCropPlanAction = plan => ({ type: "delete", plan });
 
 function cropPlanReducer(state, action) {
   switch (action.type) {
     case "create":
       return createPlan(action.plan, state);
+    case "update":
+      return createPlan(action.new_plan, deletePlan(action.old_plan, state));
     case "delete":
       return deletePlan(action.plan, state);
     default:
@@ -39,4 +39,13 @@ function deletePlan(deleted_plan, state) {
   return state.filter(plan => !CropPlan.equal(plan, deleted_plan));
 }
 
-export { createCropPlanAction, deleteCropPlanAction, cropPlanReducer };
+function useCropPlanReducer(initialState = []) {
+  const [state, dispatch] = useReducer(cropPlanReducer, initialState);
+  const createPlanAction = plan => dispatch({ type: "create", plan });
+  const updatePlanAction = (old_plan, new_plan) =>
+    dispatch({ type: "update", old_plan, new_plan });
+  const deletePlanAction = plan => dispatch({ type: "delete", plan });
+  return [state, createPlanAction, updatePlanAction, deletePlanAction];
+}
+
+export default useCropPlanReducer;

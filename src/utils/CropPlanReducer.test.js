@@ -2,7 +2,7 @@ import {
   createCropPlanAction,
   deleteCropPlanAction,
   cropPlanReducer
-} from "./CropPlanReducer";
+} from "./useCropPlanReducer";
 
 import CropPlan from "./CropPlan";
 import crops from "../data/crops";

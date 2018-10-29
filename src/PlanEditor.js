@@ -2,6 +2,7 @@ import React from "react";
 import styled from "styled-components";
 import CreateCropPlanForm from "./CreateCropPlanForm";
 import UpdateCropPlanForm from "./UpdateCropPlanForm";
+import crops from "./data/crops";
 
 export default class PlanEditor extends React.Component {
   render() {
@@ -19,7 +20,7 @@ export default class PlanEditor extends React.Component {
     return (
       <StyledEditor>
         <CreateCropPlanForm
-          crops={this.props.crops}
+          crops={crops}
           date={this.props.date}
           createCropPlan={this.props.createCropPlan}
         />

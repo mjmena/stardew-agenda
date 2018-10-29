@@ -44,13 +44,15 @@ export default class CropEventDetailsFragment extends React.Component {
         <StyledInput>
           <NumberInput
             value={this.props.quantity}
-            handleChange={this.updateQuantity}
+            onChange={this.updateQuantity}
+            placeholder="quantity"
           />
         </StyledInput>
         <StyledInput>
           <NumberInput
             value={this.props.price}
-            handleChange={this.updatePrice}
+            onChange={this.updatePrice}
+            placeholder="price"
           />
         </StyledInput>
         <StyledInput flex={2}>

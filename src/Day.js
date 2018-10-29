@@ -25,23 +25,23 @@ const StyledEvent = styled.div`
   flex: 1;
 `;
 
-export default class Day extends React.PureComponent {
-  handleClick = event => {
-    this.props.selectDate(this.props.day_in_year);
-  };
-
-  render() {
-    const actions = this.props.actions.map(action => (
-      <StyledEvent key={action.id}>
-        <EventDisplay event={action} />
-      </StyledEvent>
-    ));
-
-    return (
-      <StyledDay selected={this.props.selected} onClick={this.handleClick}>
-        <StyledDayTitle>{this.props.day_in_month}</StyledDayTitle>
-        <StyledEvents>{actions}</StyledEvents>
-      </StyledDay>
-    );
+function Day({ day, selected, actions, setDay }) {
+  function handleClick(e) {
+    setDay(day);
   }
+
+  return (
+    <StyledDay selected={selected} onClick={handleClick}>
+      <StyledDayTitle>{(day + 1) % 28}</StyledDayTitle>
+      <StyledEvents>
+        {actions.map(action => (
+          <StyledEvent key={action.id}>
+            <EventDisplay event={action} />
+          </StyledEvent>
+        ))}
+      </StyledEvents>
+    </StyledDay>
+  );
 }
+
+export default React.memo(Day);

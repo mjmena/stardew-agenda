@@ -1,5 +1,17 @@
-import React from "react";
+import React, { useMemo } from "react";
+import range from "lodash/range";
 import styled from "styled-components";
+import Day from "./Day";
+
+const day_names = [
+  "Monday",
+  "Tuesday",
+  "Wednesday",
+  "Thursday",
+  "Friday",
+  "Saturday",
+  "Sunday"
+];
 
 const StyledSeason = styled.div`
   display: flex
@@ -23,32 +35,49 @@ const StyledDay = styled(StyledSeasonBlock)`
   height: 100px;
 `;
 
-export default class Season extends React.PureComponent {
-  static names_of_days = [
-    "Monday",
-    "Tuesday",
-    "Wednesday",
-    "Thursday",
-    "Friday",
-    "Saturday",
-    "Sunday"
-  ];
+const header = day_names.map(day => (
+  <StyledSeasonBlock key={day}>{day}</StyledSeasonBlock>
+));
 
-  render() {
-    const header = Season.names_of_days.map(day => (
-      <StyledSeasonBlock key={day}>{day}</StyledSeasonBlock>
-    ));
+function Season({ season, day: current_day, plans, setDay }) {
+  const body = useMemo(
+    () =>
+      range(season.start, season.start + 28).map(day => {
+        const actions = plans
+          .flatMap(plan => plan.getCropActionsOnDate(day))
+          .reduce((uniques, action) => {
+            const unique = uniques.get(action.id);
+            if (unique) {
+              unique.quantity += action.quantity;
+            } else {
+              uniques.set(action.id, action);
+            }
+            return uniques;
+          }, new Map())
+          .values();
 
-    const body = React.Children.map(this.props.children, (child, index) => {
-      return <StyledDay key={index}>{child}</StyledDay>;
-    });
+        return (
+          <StyledDay key={day}>
+            <Day
+              key={day}
+              day={day}
+              selected={day === current_day}
+              actions={[...actions]}
+              setDay={setDay}
+            />
+          </StyledDay>
+        );
+      }),
+    [season, current_day, plans]
+  );
 
-    return (
-      <StyledSeason>
-        <StyledTitle>{this.props.season.name}</StyledTitle>
-        {header}
-        {body}
-      </StyledSeason>
-    );
-  }
+  return (
+    <StyledSeason>
+      <StyledTitle>{season.name}</StyledTitle>
+      {header}
+      {body}
+    </StyledSeason>
+  );
 }
+
+export default React.memo(Season);
