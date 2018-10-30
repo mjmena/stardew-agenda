@@ -1,14 +1,14 @@
-import React from "react";
+import React, { useEffect, useCallback } from "react";
 import ReactDOM from "react-dom";
-import styled from "styled-components";
+import styled from "styled-components/macro";
 
 const StyledDrawer = styled.div`
   position: fixed;
-  bottom:0
-  left:0
+  bottom: 0;
+  left: 0;
   width: 100vw;
-  display:flex;
-  flex-flow: column nowrap
+  display: flex;
+  flex-flow: column nowrap;
 `;
 const StyledHandle = styled.div`
   align-self: center;
@@ -17,32 +17,29 @@ const StyledHandle = styled.div`
 
 const StyledContent = styled.div`
   display: ${props => (props.visible ? "flex" : "none")};
-  flex:1
-  padding: 5vh
+  flex: 1;
+  padding: 5vh;
   background-color: WhiteSmoke;
 `;
 
-export default class Drawer extends React.PureComponent {
-  container = document.createElement("div");
+const container = document.createElement("div");
+function Drawer({ visible, onOpen, onClose, children }) {
+  useEffect(() => {
+    document.body.appendChild(container);
+  }, []);
 
-  componentDidMount() {
-    document.body.appendChild(this.container);
-  }
+  const handleToggle = useCallback(() => {
+    if (visible) onClose();
+    else onOpen();
+  });
 
-  handleToggle = () => {
-    if (this.props.visible) this.props.onClose();
-    else this.props.onOpen();
-  };
-
-  render() {
-    return ReactDOM.createPortal(
-      <StyledDrawer>
-        <StyledHandle onClick={this.handleToggle}> handle</StyledHandle>
-        <StyledContent visible={this.props.visible}>
-          {this.props.children}
-        </StyledContent>
-      </StyledDrawer>,
-      this.container
-    );
-  }
+  return ReactDOM.createPortal(
+    <StyledDrawer>
+      <StyledHandle onClick={handleToggle}> handle</StyledHandle>
+      <StyledContent visible={visible}>{children}</StyledContent>
+    </StyledDrawer>,
+    container
+  );
 }
+
+export default React.memo(Drawer);

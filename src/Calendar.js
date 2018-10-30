@@ -37,6 +37,7 @@ export default function Calendar() {
       />
       <Drawer visible={visible} onOpen={open} onClose={close}>
         <PlanEditor
+          key={day}
           date={day}
           plans={plans}
           createCropPlan={createPlan}

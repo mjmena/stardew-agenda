@@ -1,5 +1,5 @@
 import React from "react";
-import styled from "styled-components";
+import styled from "styled-components/macro";
 import EventDisplay from "./EventDisplay";
 let StyledDay = styled.div`
   width: 100%;

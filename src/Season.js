@@ -1,6 +1,6 @@
 import React, { useMemo } from "react";
 import range from "lodash/range";
-import styled from "styled-components";
+import styled from "styled-components/macro";
 import Day from "./Day";
 
 const day_names = [
@@ -14,21 +14,21 @@ const day_names = [
 ];
 
 const StyledSeason = styled.div`
-  display: flex
-  flex-wrap: wrap
-  flex-grow: 1
+  display: flex;
+  flex-wrap: wrap;
+  flex-grow: 1;
 `;
 
 const StyledTitle = styled.div`
-    flex-grow: 1
-    width: 100%
-    text-align: center
+  flex-grow: 1;
+  width: 100%;
+  text-align: center;
 `;
 
 const StyledSeasonBlock = styled.div`
-  flex-grow: 1
-  width: 13%
-  border: 1px solid black
+  flex-grow: 1;
+  width: 13%;
+  border: 1px solid black;
 `;
 
 const StyledDay = styled(StyledSeasonBlock)`
