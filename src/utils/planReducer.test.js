@@ -1,8 +1,4 @@
-import {
-  createCropPlanAction,
-  deleteCropPlanAction,
-  cropPlanReducer
-} from "./useCropPlanReducer";
+import planReducer from "./planReducer";
 
 import CropPlan from "./CropPlan";
 import crops from "../data/crops";
@@ -36,18 +32,18 @@ const merged_jazz_plan = new CropPlan({
   replant: false
 });
 
-describe("Tests CropPlanReducer", () => {
-  test("adding a new CropPlan to new state", () => {
-    const new_state = cropPlanReducer([], createCropPlanAction(jazz_plan));
+describe("Tests Plan Reducer", () => {
+  test("adding a new Plan to a new state", () => {
+    const new_state = planReducer([], { type: "create", plan: jazz_plan });
     expect(new_state).toEqual([jazz_plan]);
     expect(new_state.length).toBe(1);
   });
 
   test("merging a new CropPlan to old state", () => {
-    const new_state = cropPlanReducer(
-      [cauliflower_plan, jazz_plan],
-      createCropPlanAction(jazz_plan)
-    );
+    const new_state = planReducer([cauliflower_plan, jazz_plan], {
+      type: "create",
+      plan: jazz_plan
+    });
     expect(CropPlan.equal(new_state[0], [merged_jazz_plan][0])).toBe(true);
     expect(new_state).toContain(cauliflower_plan);
     expect(new_state).not.toContain(jazz_plan);
@@ -55,26 +51,26 @@ describe("Tests CropPlanReducer", () => {
   });
 
   test("adding a new CropPlan to old state", () => {
-    const state = cropPlanReducer(
-      [jazz_plan],
-      createCropPlanAction(cauliflower_plan)
-    );
+    const state = planReducer([jazz_plan], {
+      type: "create",
+      plan: cauliflower_plan
+    });
     expect(state).toContain(jazz_plan);
     expect(state).toContain(cauliflower_plan);
     expect(state.length).toBe(2);
   });
 
-  test("removing a CropPlan and return an empty state", () => {
-    const state = cropPlanReducer([jazz_plan], deleteCropPlanAction(jazz_plan));
+  test("deleting a CropPlan and return an empty state", () => {
+    const state = planReducer([jazz_plan], { type: "delete", plan: jazz_plan });
     expect(state).toEqual([]);
     expect(state).not.toContain(jazz_plan);
   });
 
-  test("removing a CropPlan and return a state", () => {
-    const state = cropPlanReducer(
-      [jazz_plan, cauliflower_plan],
-      deleteCropPlanAction(jazz_plan)
-    );
+  test("deleting a CropPlan and return a state", () => {
+    const state = planReducer([jazz_plan, cauliflower_plan], {
+      type: "delete",
+      plan: jazz_plan
+    });
     expect(state).toContain(cauliflower_plan);
     expect(state).not.toContain(jazz_plan);
     expect(state.length).toBe(1);

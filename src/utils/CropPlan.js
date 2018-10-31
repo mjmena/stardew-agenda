@@ -1,5 +1,12 @@
 export default class CropPlan {
-  constructor({ crop, fertilizer, quantity, replant, start_date, end_date }) {
+  constructor({
+    crop,
+    fertilizer,
+    quantity,
+    replant = false,
+    start_date,
+    end_date
+  }) {
     Object.assign(this, {
       crop,
       fertilizer,
