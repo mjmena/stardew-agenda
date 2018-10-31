@@ -16,7 +16,7 @@ export default function Calendar() {
   const [season, setSeason] = useState(0);
   const [day, setDay] = useState(0);
   const [plans, createPlan, updatePlan, deletePlan] = useCropPlanReducer([]);
-  const [visible, setVisible] = useState(0);
+  const [visible, setVisible] = useState(true);
   const open = useCallback(() => setVisible(true), []);
   const close = useCallback(() => setVisible(false), []);
 
@@ -24,7 +24,7 @@ export default function Calendar() {
     <>
       <NumberInput
         value={season}
-        onChange={setSeason}
+        handleValue={setSeason}
         isNullable={false}
         max={3}
       />
@@ -40,9 +40,9 @@ export default function Calendar() {
           key={day}
           date={day}
           plans={plans}
-          createCropPlan={createPlan}
-          updateCropPlan={updatePlan}
-          deleteCropPlan={deletePlan}
+          createPlan={createPlan}
+          updatePlan={updatePlan}
+          deletePlan={deletePlan}
         />
       </Drawer>
     </>

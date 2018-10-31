@@ -1,37 +1,30 @@
-import React from "react";
-import styled from "styled-components";
+import React, { useMemo } from "react";
 import CreateCropPlanForm from "./CreateCropPlanForm";
 import UpdateCropPlanForm from "./UpdateCropPlanForm";
-import crops from "./data/crops";
 
-export default class PlanEditor extends React.Component {
-  render() {
-    const editable_plans = this.props.plans
-      .filter(plan => plan.isPlantDate(this.props.date))
-      .map(plan => (
-        <UpdateCropPlanForm
-          key={plan.id + plan.quantity}
-          plan={plan}
-          updateCropPlan={this.props.updateCropPlan}
-          deleteCropPlan={this.props.deleteCropPlan}
-        />
-      ));
+function PlanEditor({ date, plans, createPlan, updatePlan, deletePlan }) {
+  const editable_plans = useMemo(
+    () =>
+      plans
+        .filter(plan => plan.isPlantDate(date))
+        .map(plan => (
+          <UpdateCropPlanForm
+            key={plan.id}
+            date={date}
+            plan={plan}
+            updatePlan={updatePlan}
+            deletePlan={deletePlan}
+          />
+        )),
+    [date, plans]
+  );
 
-    return (
-      <StyledEditor>
-        <CreateCropPlanForm
-          crops={crops}
-          date={this.props.date}
-          createCropPlan={this.props.createCropPlan}
-        />
-        {editable_plans}
-      </StyledEditor>
-    );
-  }
+  return (
+    <>
+      <CreateCropPlanForm date={date} createPlan={createPlan} />
+      {editable_plans}
+    </>
+  );
 }
 
-const StyledEditor = styled.div`
-  display: flex;
-  flex-flow: column nowrap;
-  width: 100%;
-`;
+export default React.memo(PlanEditor);

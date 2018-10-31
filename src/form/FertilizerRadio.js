@@ -1,40 +1,28 @@
-import React from "react";
-import styled from "styled-components";
+import React, { useCallback } from "react";
 import fertilizers from "../data/fertilizers";
 
-export default class FertilizerRadio extends React.Component {
-  handleChange = event => {
-    const fertilizer = fertilizers[event.target.value];
-    this.props.updateFertilizer(fertilizer);
-  };
+function FertilizerRadio({ value, handleValue, tag }) {
+  const handleChange = useCallback(
+    e => handleValue(fertilizers[e.target.value]),
+    []
+  );
 
-  render() {
-    const [none, bf, qf, sg, dsg] = fertilizers.map((fertilizer, index) => (
-      <>
-        <input
-          type="radio"
-          id={fertilizer.id}
-          name={fertilizer.id}
-          value={index}
-          checked={fertilizer.id === this.props.fertilizer.id}
-          onChange={this.handleChange}
-        />
-        <label htmlFor={fertilizer.id}>{fertilizer.name}</label>
-      </>
-    ));
-    return (
-      <StyledRadioGroup>
-        {none}
-        {bf}
-        {qf}
-        {sg}
-        {dsg}
-      </StyledRadioGroup>
-    );
-  }
+  const fertilizer_radios = fertilizers.map((fertilizer, index) => (
+    <React.Fragment key={fertilizer.id}>
+      <input
+        type="radio"
+        id={fertilizer.id + "-" + tag}
+        name={"fertilizer-" + tag}
+        value={index}
+        checked={fertilizer === value}
+        onChange={handleChange}
+      />
+      <label htmlFor={fertilizer.id + "-" + tag}>{fertilizer.name}</label>
+    </React.Fragment>
+  ));
+
+  return <>{fertilizer_radios}</>;
 }
 
-const StyledRadioGroup = styled.div`
-  display: flex
-  flex-flow: row nowrap
-`;
+export default React.memo(FertilizerRadio);
+export const none = fertilizers[0];

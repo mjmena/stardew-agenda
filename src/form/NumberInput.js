@@ -4,7 +4,7 @@ import React from "react";
 // Useful for inputs with a placeholder
 function NumberInput({
   value,
-  onChange,
+  handleValue,
   isNullable = true,
   max = Number.MAX_SAFE_INTEGER,
   ...attrs
@@ -13,9 +13,9 @@ function NumberInput({
     const number = Number.parseInt(e.target.value.replace(/\D/, ""), 10);
 
     if (Number.isNaN(number)) {
-      onChange(isNullable ? null : 0);
+      handleValue(isNullable ? null : 0);
     } else {
-      onChange(number < max ? number : max);
+      handleValue(number < max ? number : max);
     }
   }
 
