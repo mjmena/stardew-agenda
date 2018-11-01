@@ -6,7 +6,8 @@ let StyledDay = styled.div`
   height: 100%;
   display: flex;
   flex-flow: column nowrap;
-  background-color: ${props => (props.selected ? "blue" : "none")};
+  border: ${props => (props.selected ? "1px solid black" : "none")};
+  background-color: ${props => (props.selected ? "whitesmoke" : "none")};
 `;
 
 const StyledDayTitle = styled.div`

@@ -1,7 +1,7 @@
 import React, { useMemo } from "react";
 import range from "lodash/range";
-import styled from "styled-components/macro";
 import Day from "./Day";
+import Style from "./Season.style";
 
 const day_names = [
   "Monday",
@@ -13,30 +13,8 @@ const day_names = [
   "Sunday"
 ];
 
-const StyledSeason = styled.div`
-  display: flex;
-  flex-wrap: wrap;
-  flex-grow: 1;
-`;
-
-const StyledTitle = styled.div`
-  flex-grow: 1;
-  width: 100%;
-  text-align: center;
-`;
-
-const StyledSeasonBlock = styled.div`
-  flex-grow: 1;
-  width: 13%;
-  border: 1px solid black;
-`;
-
-const StyledDay = styled(StyledSeasonBlock)`
-  height: 100px;
-`;
-
 const header = day_names.map(day => (
-  <StyledSeasonBlock key={day}>{day}</StyledSeasonBlock>
+  <Style.Header key={day}>{day}</Style.Header>
 ));
 
 function Season({ season, day: current_day, plans, setDay }) {
@@ -57,7 +35,7 @@ function Season({ season, day: current_day, plans, setDay }) {
           .values();
 
         return (
-          <StyledDay key={day}>
+          <Style.Block key={day}>
             <Day
               key={day}
               day={day}
@@ -65,18 +43,18 @@ function Season({ season, day: current_day, plans, setDay }) {
               actions={[...actions]}
               setDay={setDay}
             />
-          </StyledDay>
+          </Style.Block>
         );
       }),
     [season, current_day, plans]
   );
 
   return (
-    <StyledSeason>
-      <StyledTitle>{season.name}</StyledTitle>
+    <Style.Container>
+      <Style.Title>{season.name}</Style.Title>
       {header}
       {body}
-    </StyledSeason>
+    </Style.Container>
   );
 }
 
