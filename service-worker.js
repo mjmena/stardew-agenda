@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/3.6.2/workbox-sw.js");
 
 importScripts(
-  "/stardew-calculator/precache-manifest.717635a05fa7504d0858c05ee16b40f5.js"
+  "/stardew-agenda/precache-manifest.f3596898cc74e7c00d428aafabe9cf02.js"
 );
 
 workbox.clientsClaim();
@@ -28,7 +28,7 @@ self.__precacheManifest = [].concat(self.__precacheManifest || []);
 workbox.precaching.suppressWarnings();
 workbox.precaching.precacheAndRoute(self.__precacheManifest, {});
 
-workbox.routing.registerNavigationRoute("/stardew-calculator/index.html", {
+workbox.routing.registerNavigationRoute("/stardew-agenda/index.html", {
   
   blacklist: [/^\/_/,/\/[^\/]+\.[^\/]+$/],
 });

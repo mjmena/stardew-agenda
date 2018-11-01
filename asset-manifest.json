@@ -1,13 +1,13 @@
 {
-  "main.css": "/stardew-calculator/static/css/main.53eeb891.chunk.css",
-  "main.js": "/stardew-calculator/static/js/main.526bac74.chunk.js",
-  "main.js.map": "/stardew-calculator/static/js/main.526bac74.chunk.js.map",
-  "static/js/1.3816712a.chunk.js": "/stardew-calculator/static/js/1.3816712a.chunk.js",
-  "static/js/1.3816712a.chunk.js.map": "/stardew-calculator/static/js/1.3816712a.chunk.js.map",
-  "runtime~main.js": "/stardew-calculator/static/js/runtime~main.7f69944e.js",
-  "runtime~main.js.map": "/stardew-calculator/static/js/runtime~main.7f69944e.js.map",
-  "static/css/main.53eeb891.chunk.css.map": "/stardew-calculator/static/css/main.53eeb891.chunk.css.map",
-  "index.html": "/stardew-calculator/index.html",
-  "precache-manifest.717635a05fa7504d0858c05ee16b40f5.js": "/stardew-calculator/precache-manifest.717635a05fa7504d0858c05ee16b40f5.js",
-  "service-worker.js": "/stardew-calculator/service-worker.js"
+  "main.css": "/stardew-agenda/static/css/main.53eeb891.chunk.css",
+  "main.js": "/stardew-agenda/static/js/main.526bac74.chunk.js",
+  "main.js.map": "/stardew-agenda/static/js/main.526bac74.chunk.js.map",
+  "static/js/1.795b5bb5.chunk.js": "/stardew-agenda/static/js/1.795b5bb5.chunk.js",
+  "static/js/1.795b5bb5.chunk.js.map": "/stardew-agenda/static/js/1.795b5bb5.chunk.js.map",
+  "runtime~main.js": "/stardew-agenda/static/js/runtime~main.97bd619e.js",
+  "runtime~main.js.map": "/stardew-agenda/static/js/runtime~main.97bd619e.js.map",
+  "static/css/main.53eeb891.chunk.css.map": "/stardew-agenda/static/css/main.53eeb891.chunk.css.map",
+  "index.html": "/stardew-agenda/index.html",
+  "precache-manifest.f3596898cc74e7c00d428aafabe9cf02.js": "/stardew-agenda/precache-manifest.f3596898cc74e7c00d428aafabe9cf02.js",
+  "service-worker.js": "/stardew-agenda/service-worker.js"
 }
