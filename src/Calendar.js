@@ -2,8 +2,8 @@ import React, { useState, useCallback } from "react";
 import Season from "./Season";
 import PlanEditor from "./PlanEditor";
 import Drawer from "./components/Drawer";
-import NumberInput from "./form/NumberInput";
 import useCropPlanReducer from "./utils/useCropPlanReducer";
+import capitalize from "lodash/capitalize";
 
 const seasons = [
   { name: "spring", start: 0 },
@@ -20,15 +20,20 @@ export default function Calendar() {
   const open = useCallback(() => setVisible(true), []);
   const close = useCallback(() => setVisible(false), []);
 
+  function handleSeasonClick(e) {
+    setDay(e.target.value * 28);
+    setSeason(e.target.value);
+  }
+
+  const season_picker = seasons.map((season, index) => (
+    <button key={season.name} onClick={handleSeasonClick} value={index}>
+      {capitalize(season.name)}
+    </button>
+  ));
+
   return (
     <>
-      <NumberInput
-        value={season}
-        handleValue={setSeason}
-        isNullable={false}
-        max={3}
-      />
-
+      {season_picker}
       <Season
         season={seasons[season]}
         day={day}
