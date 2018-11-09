@@ -11,10 +11,10 @@
  * See https://goo.gl/2aRDsh
  */
 
-importScripts("https://storage.googleapis.com/workbox-cdn/releases/3.6.2/workbox-sw.js");
+importScripts("https://storage.googleapis.com/workbox-cdn/releases/3.6.3/workbox-sw.js");
 
 importScripts(
-  "/stardew-agenda/precache-manifest.f3596898cc74e7c00d428aafabe9cf02.js"
+  "/stardew-agenda/precache-manifest.6879406e78fa76c1b607db1c3d324cf2.js"
 );
 
 workbox.clientsClaim();
