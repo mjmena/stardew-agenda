@@ -1,13 +1,13 @@
 {
-  "main.css": "/stardew-agenda/static/css/main.9fc006b8.chunk.css",
-  "main.js": "/stardew-agenda/static/js/main.997bf777.chunk.js",
-  "main.js.map": "/stardew-agenda/static/js/main.997bf777.chunk.js.map",
-  "static/js/1.ab03eb65.chunk.js": "/stardew-agenda/static/js/1.ab03eb65.chunk.js",
-  "static/js/1.ab03eb65.chunk.js.map": "/stardew-agenda/static/js/1.ab03eb65.chunk.js.map",
+  "main.css": "/stardew-agenda/static/css/main.826638d1.chunk.css",
+  "main.js": "/stardew-agenda/static/js/main.1a429cb8.chunk.js",
+  "main.js.map": "/stardew-agenda/static/js/main.1a429cb8.chunk.js.map",
+  "static/js/1.335da3f9.chunk.js": "/stardew-agenda/static/js/1.335da3f9.chunk.js",
+  "static/js/1.335da3f9.chunk.js.map": "/stardew-agenda/static/js/1.335da3f9.chunk.js.map",
   "runtime~main.js": "/stardew-agenda/static/js/runtime~main.97bd619e.js",
   "runtime~main.js.map": "/stardew-agenda/static/js/runtime~main.97bd619e.js.map",
-  "static/css/main.9fc006b8.chunk.css.map": "/stardew-agenda/static/css/main.9fc006b8.chunk.css.map",
+  "static/css/main.826638d1.chunk.css.map": "/stardew-agenda/static/css/main.826638d1.chunk.css.map",
   "index.html": "/stardew-agenda/index.html",
-  "precache-manifest.6d410f88c27fc8acf5f6241febad0fdf.js": "/stardew-agenda/precache-manifest.6d410f88c27fc8acf5f6241febad0fdf.js",
+  "precache-manifest.04a52a7e1caa07f776bc388ddb6d175a.js": "/stardew-agenda/precache-manifest.04a52a7e1caa07f776bc388ddb6d175a.js",
   "service-worker.js": "/stardew-agenda/service-worker.js"
 }

@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/3.6.3/workbox-sw.js");
 
 importScripts(
-  "/stardew-agenda/precache-manifest.6d410f88c27fc8acf5f6241febad0fdf.js"
+  "/stardew-agenda/precache-manifest.04a52a7e1caa07f776bc388ddb6d175a.js"
 );
 
 workbox.clientsClaim();
