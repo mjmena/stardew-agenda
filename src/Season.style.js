@@ -22,6 +22,9 @@ const Style = {
   `,
   Block: styled(BaseBlock)`
     height: 15vh;
+    border: ${props =>
+      props.selected ? "1px solid black" : "1px solid whitesmoke"};
+    background-color: ${props => (props.selected ? "whitesmoke" : "none")};
   `
 };
 

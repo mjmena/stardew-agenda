@@ -1,10 +1,10 @@
-import React, { useState, useCallback } from "react";
+import React, { useState, useCallback, useMemo } from "react";
 import Season from "./Season";
 import PlanEditor from "./PlanEditor";
 import Drawer from "./components/Drawer";
 import useCropPlanReducer from "./utils/useCropPlanReducer";
-import capitalize from "lodash/capitalize";
-
+import { capitalize, range } from "lodash";
+import events from "./data/events";
 const seasons = [
   { name: "spring", start: 0 },
   { name: "summer", start: 28 },
@@ -12,10 +12,40 @@ const seasons = [
   { name: "winter", start: 84 }
 ];
 
-export default function Calendar() {
+function getActionsOnDate(date, plans) {
+  const actions = Array.from(
+    plans
+      .flatMap(plan => plan.getCropActionsOnDate(date))
+      .reduce((uniques, action) => {
+        const unique = uniques.get(action.id);
+        if (unique) {
+          unique.quantity += action.quantity;
+        } else {
+          uniques.set(action.id, action);
+        }
+        return uniques;
+      }, new Map())
+      .values()
+  );
+  if (events[date]) return [...events[date], ...actions];
+  return actions;
+}
+
+function usePlansForActions(plans, season) {
+  return useMemo(
+    () =>
+      range(season.start, season.start + 28).map(day =>
+        getActionsOnDate(day, plans)
+      ),
+    [plans, season]
+  );
+}
+
+function Calendar() {
   const [season, setSeason] = useState(0);
   const [day, setDay] = useState(0);
   const [plans, createPlan, updatePlan, deletePlan] = useCropPlanReducer([]);
+  const actions = usePlansForActions(plans, seasons[season]);
   const [visible, setVisible] = useState(true);
   const open = useCallback(() => setVisible(true), []);
   const close = useCallback(() => setVisible(false), []);
@@ -37,7 +67,7 @@ export default function Calendar() {
       <Season
         season={seasons[season]}
         day={day}
-        plans={plans}
+        actions={actions}
         setDay={setDay}
       />
       <Drawer visible={visible} onOpen={open} onClose={close}>
@@ -53,3 +83,5 @@ export default function Calendar() {
     </>
   );
 }
+
+export default React.memo(Calendar);

@@ -1,5 +1,5 @@
 {
-  "name": "Stardew-Agenda",
+  "name": "stardew-agenda",
   "version": "0.2.0",
   "private": false,
   "homepage": "http://mjmena.github.io/stardew-agenda",
@@ -14,9 +14,12 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build"
   },
   "devDependencies": {
+    "gh-pages": "^2.0.1",
     "prettier": "^1.15.1"
   },
   "eslintConfig": {

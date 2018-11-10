@@ -1,47 +1,26 @@
-import React from "react";
-import styled from "styled-components/macro";
-import EventDisplay from "./EventDisplay";
-let StyledDay = styled.div`
-  width: 100%;
-  height: 100%;
-  display: flex;
-  flex-flow: column nowrap;
-  border: ${props => (props.selected ? "1px solid black" : "none")};
-  background-color: ${props => (props.selected ? "whitesmoke" : "none")};
-`;
+import React, { useCallback } from "react";
+import ActionDisplay from "./ActionDisplay";
+import Style from "./Day.style";
 
-const StyledDayTitle = styled.div`
-  height: 35px;
-`;
-
-const StyledEvents = styled.div`
-  flex-grow: 1;
-  display: flex;
-  flex-flow: column wrap;
-  justify-content: start;
-  overflow: auto;
-`;
-
-const StyledEvent = styled.div`
-  flex: 1;
-`;
-
-function Day({ day, selected, actions, setDay }) {
-  function handleClick(e) {
-    setDay(day);
-  }
+function Day({ day, selected, actions = [], setDay }) {
+  const handleClick = useCallback(
+    () => {
+      setDay(day);
+    },
+    [day]
+  );
 
   return (
-    <StyledDay selected={selected} onClick={handleClick}>
-      <StyledDayTitle>{(day + 1) % 28}</StyledDayTitle>
-      <StyledEvents>
+    <Style.Container selected={selected} onClick={handleClick}>
+      <Style.Header>{(day + 1) % 28}</Style.Header>
+      <Style.Body>
         {actions.map(action => (
-          <StyledEvent key={action.id}>
-            <EventDisplay event={action} />
-          </StyledEvent>
+          <Style.Box key={action.id}>
+            <ActionDisplay action={action} />
+          </Style.Box>
         ))}
-      </StyledEvents>
-    </StyledDay>
+      </Style.Body>
+    </Style.Container>
   );
 }
 

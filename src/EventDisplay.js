@@ -1,26 +1,26 @@
 import React from "react";
 import CropImage from "./components/CropImage";
-import EventImage from "./EventImage";
+import PlanImage from "./PlanImage";
 
-const EventDisplay = ({ event }) => {
+const PlanDisplay = ({ plan }) => {
   if (
-    event.type === "plant" ||
-    event.type === "replant" ||
-    event.type === "harvest"
+    plan.type === "plant" ||
+    plan.type === "replant" ||
+    plan.type === "harvest"
   )
     return (
       <>
-        <CropImage crop={event.crop} seed={event.type === "plant"} />
-        <span>x{event.quantity}</span>
+        <CropImage crop={plan.crop} seed={plan.type === "plant"} />
+        <span>x{plan.quantity}</span>
       </>
     );
   else
     return (
       <>
-        <EventImage event={event} />
-        {event.name}
+        <PlanImage plan={plan} />
+        {plan.name}
       </>
     );
 };
 
-export default React.memo(EventDisplay);
+export default React.memo(PlanDisplay);

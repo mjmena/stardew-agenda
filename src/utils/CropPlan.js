@@ -1,3 +1,5 @@
+import { range } from "lodash";
+
 export default class CropPlan {
   constructor({
     crop,
@@ -16,8 +18,8 @@ export default class CropPlan {
         replant || crop.regrowth
           ? crop.end
           : replant === false
-            ? start_date + CropPlan.getCropGrowth(crop, fertilizer)
-            : end_date
+          ? start_date + CropPlan.getCropGrowth(crop, fertilizer)
+          : end_date
     });
   }
 
@@ -94,21 +96,30 @@ export default class CropPlan {
     );
   };
 
-  getAction = type => ({
-    id: `${type}-${this.crop.id}`,
+  getAction = (date, type) => ({
+    id: `${type}-${this.crop.id}-${date}`,
+    date: date,
     type: type,
     crop: this.crop,
     quantity: this.quantity
   });
 
   getCropActionsOnDate = date => {
+    const actions = [];
     const isPlant = this.isPlantDate(date);
     const isHarvest = this.isHarvestDate(date);
-    if (isPlant && isHarvest)
-      return [this.getAction("plant"), this.getAction("harvest")];
-    else if (isPlant) return [this.getAction("plant")];
-    else if (isHarvest) return [this.getAction("harvest")];
-    else return [];
+    if (isPlant) actions.push(this.getAction(date, "plant"));
+    if (isHarvest) actions.push(this.getAction(date, "harvest"));
+    return actions;
+  };
+
+  getActionsInRange = (start, end) => {
+    if (start > this.end_date || end < this.start_date) return [];
+    return range(start, end).reduce((dates, date) => {
+      if (this.isPlantDate(date)) dates.push(this.getAction(date, "plant"));
+      if (this.isHarvestDate(date)) dates.push(this.getAction(date, "harvest"));
+      return dates;
+    }, []);
   };
 
   split = (date, { fertilizer, quantity, replant }) => {
