@@ -1,7 +1,7 @@
 import React, { useEffect, useCallback } from "react";
 import ReactDOM from "react-dom";
 import styled from "styled-components/macro";
-
+import { ReactComponent as ThreeBars } from "../images/three-bars.svg";
 const StyledDrawer = styled.div`
   position: fixed;
   bottom: 0;
@@ -35,7 +35,9 @@ function Drawer({ visible, onOpen, onClose, children }) {
 
   return ReactDOM.createPortal(
     <StyledDrawer>
-      <StyledHandle onClick={handleToggle}> handle</StyledHandle>
+      <StyledHandle onClick={handleToggle}>
+        <ThreeBars />
+      </StyledHandle>
       <StyledContent visible={visible}>{children}</StyledContent>
     </StyledDrawer>,
     container
