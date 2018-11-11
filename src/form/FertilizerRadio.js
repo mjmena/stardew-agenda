@@ -1,4 +1,5 @@
 import React, { useCallback } from "react";
+import FertilizerImage from "../components/FertilizerImage";
 import fertilizers from "../data/fertilizers";
 
 function FertilizerRadio({ value, handleValue, tag }) {
@@ -16,8 +17,11 @@ function FertilizerRadio({ value, handleValue, tag }) {
         value={index}
         checked={fertilizer === value}
         onChange={handleChange}
+        style={{ visibility: "hidden", display: "none" }}
       />
-      <label htmlFor={fertilizer.id + "-" + tag}>{fertilizer.name}</label>
+      <label htmlFor={fertilizer.id + "-" + tag}>
+        <FertilizerImage fertilizer={fertilizer} faded={fertilizer !== value} />
+      </label>
     </React.Fragment>
   ));
 
