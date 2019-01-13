@@ -1,16 +1,12 @@
-import React, { useState, useCallback, useMemo } from "react";
+import React, { useState, useCallback, useMemo, useReducer } from "react";
 import Season from "./Season";
 import PlanEditor from "./PlanEditor";
 import Drawer from "./components/Drawer";
 import useCropPlanReducer from "./utils/useCropPlanReducer";
 import { capitalize, range } from "lodash";
 import events from "./data/events";
-const seasons = [
-  { name: "spring", start: 0 },
-  { name: "summer", start: 28 },
-  { name: "fall", start: 56 },
-  { name: "winter", start: 84 }
-];
+
+const seasons = ["spring", "summer", "fall", "winter"];
 
 function getActionsOnDate(date, plans) {
   const actions = Array.from(
@@ -33,47 +29,77 @@ function getActionsOnDate(date, plans) {
 
 function usePlansForActions(plans, season) {
   return useMemo(
-    () =>
-      range(season.start, season.start + 28).map(day =>
-        getActionsOnDate(day, plans)
-      ),
+    () => range(season, season + 28).map(day => getActionsOnDate(day, plans)),
     [plans, season]
   );
 }
 
 function Calendar() {
-  const [season, setSeason] = useState(0);
-  const [day, setDay] = useState(0);
+  const [{ year, season, day }, dispatch] = useReducer(
+    (state, action) => {
+      switch (action.type) {
+        case "increment_year":
+          return { ...state, year: state.year + 1, day: 0 };
+        case "decrement_year":
+          if (state.year === 0) return state;
+          return { ...state, year: state.year - 1, day: 0 };
+        case "set_year":
+          return { ...state, year: action.year, day: 0 };
+        case "set_season":
+          if (state.season === action.season) return state;
+          return { ...state, season: action.season, day: 0 };
+        case "set_day":
+          return { ...state, day: action.day };
+        default:
+          return state;
+      }
+    },
+    { year: 0, season: 0, day: 0 }
+  );
+
   const [plans, createPlan, updatePlan, deletePlan] = useCropPlanReducer([]);
-  const actions = usePlansForActions(plans, seasons[season]);
+  const actions = usePlansForActions(plans, season * 28);
   const [visible, setVisible] = useState(true);
   const open = useCallback(() => setVisible(true), []);
   const close = useCallback(() => setVisible(false), []);
 
-  function handleSeasonClick(e) {
-    setDay(e.target.value * 28);
-    setSeason(e.target.value);
-  }
-
   const season_picker = seasons.map((season, index) => (
-    <button key={season.name} onClick={handleSeasonClick} value={index}>
-      {capitalize(season.name)}
+    <button
+      key={season}
+      onClick={e =>
+        dispatch({
+          type: "set_season",
+          season: Number.parseInt(e.target.value)
+        })
+      }
+      value={index}
+    >
+      {capitalize(season)}
     </button>
   ));
 
   return (
     <>
+      <div>{`${year} - ${season} - ${day}`} </div>
+      <button onClick={() => dispatch({ type: "decrement_year" })}>
+        Decrement
+      </button>
+      {year + 1}
+      <button onClick={() => dispatch({ type: "increment_year" })}>
+        Increment
+      </button>
+
       {season_picker}
       <Season
         season={seasons[season]}
         day={day}
         actions={actions}
-        setDay={setDay}
+        setDay={new_day => dispatch({ type: "set_day", day: new_day })}
       />
       <Drawer visible={visible} onOpen={open} onClose={close}>
         <PlanEditor
           key={day}
-          date={day}
+          date={year * 112 + season * 28 + day}
           plans={plans}
           createPlan={createPlan}
           updatePlan={updatePlan}

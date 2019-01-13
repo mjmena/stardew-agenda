@@ -19,13 +19,17 @@ const header = day_names.map(day => (
 ));
 
 function Season({ season, day: current_day, actions, setDay }) {
-  const days = range(season.start, season.start + 28);
+  const days = range(0, 28);
 
   const body = useMemo(
     () =>
       days.map((day, index) => (
-        <Style.Block key={day} selected={day === current_day}>
-          <Day key={day} day={day} setDay={setDay} actions={actions[index]} />
+        <Style.Block
+          key={day}
+          selected={day === current_day}
+          onClick={() => setDay(day)}
+        >
+          <Day key={day} day={day + 1} actions={actions[index]} />
         </Style.Block>
       )),
     [current_day, actions]
@@ -33,7 +37,7 @@ function Season({ season, day: current_day, actions, setDay }) {
 
   return (
     <Style.Container>
-      <Style.Title>{season.name}</Style.Title>
+      <Style.Title>{season}</Style.Title>
       {header}
       {body}
     </Style.Container>
